@@ -1,0 +1,326 @@
+set nocompatible                " This must be first, because it changes other options as a side effect
+filetype off
+syntax on
+filetype plugin indent on
+
+call plug#begin('~/.vim/plugged')
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-syntastic/syntastic'
+Plug 'junegunn/fzf.vim'                   " Fzf vim wrapper
+"Plug 'ludovicchabant/vim-gutentags'       " Tag generation
+"Plug 'neoclide/coc.nvim', {'branch':'release'}
+"Plug 'neoclide/coc-python'
+" Initialize plugin system
+call plug#end()
+
+" Python paths
+let g:python_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+" If using tmux and iTerm2 on OSX, the following changes the cursor from a block to a cursor
+" {{{
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+" }}}
+set tabstop=2                   " Show existing tab with 2 spaces
+set shiftwidth=2      		      " When indenting with '>' use 2 spaces
+set softtabstop=2               " number of spaces in tab when editing
+set expandtab                   " On pressing tab insert 2 spaces
+set updatetime=300              " You will have bad experience for diagnostic messages when it's default 4000.
+"set smarttab
+"set smartindent
+"set cindent
+set viewoptions=folds,options,cursor,unix,slash
+set autoindent                  " set auto-indenting on for programming
+set autoread                    " auto reload files in the buffer
+set noswapfile
+set showmatch                   " automatically show matching brackets. works like it does in bbedit.
+set showcmd                     " show command in bottom bar
+set cursorline                  " highlight current line (turning off due to iTerm fuzziness)
+set ruler                       " show the cursor position all the time
+set mouse=a                     " Enable mouse usage
+set ttymouse=xterm2
+set guioptions+=a               " autoselect in gui mode
+set backspace=indent,eol,start  " make that backspace key work the way it should
+set showmode                    " show the current mode
+set number                      " show line numbers
+set history=1000                " store lots of :cmdline history
+set hlsearch                    " highlight matches
+set incsearch                   " search as characters are entered
+set ignorecase                  " ignore case while searching
+set smartcase                   " combined with 'ignorecase' search is only case sensitive when an upprercase letter is used
+set wildmenu                    " visual autocomplete for command menu
+set splitbelow                  " new horizontal split pane to the bottom
+set splitright                  " new vertical split pane to the right
+set t_Co=256                    " tell the term has 256 colors
+set background=light            " Use colours that work well on a dark background (Console is usually black)
+set timeoutlen=1000 ttimeoutlen=0 " Eliminate ESC delay - timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
+"set paste                       " ***BREAKING TABS*** Turn off autoindent when pasting
+
+"""
+" netrw explorer
+"""
+let g:netrw_banner = 0        " Directory banner is mostly useless
+let g:netrw_liststyle = 3     " Tree list view
+let g:netrw_browse_split = 2  " Open files in a new vertical split
+let g:netrw_altv = 1          " 
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call NetrwMapping()
+augroup END
+
+function! NetrwMapping()
+    nnoremap <buffer> <C-L> <C-W><C-L>
+endfunction
+"""
+" END netrw explorer
+"""
+
+" Change color schemes based on time of the day. 
+" $ITERM_PROFILE is set in the .bash_profile
+let iterm_profile = $ITERM_PROFILE
+if iterm_profile == "dark"
+    set background=dark
+    colors badwolf
+else
+    set background=light        " Set solarized background color
+    colors papercolor
+endif
+
+" Leader
+let mapleader = " "
+
+" Use clipboard register for everything except  delete "
+set clipboard=unnamed
+
+" FINDING FILES
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+set wildmenu " Display all matching files when we tab complete
+
+" Fzf fuzzy finders
+set rtp+=/usr/local/opt/fzf " Enable fzf
+
+""""""""""""""
+" ************
+" Mappings
+" ************
+""""""""""""""
+" Open lines, but stay in normal mode
+nmap <S-CR> O<Esc>
+nmap <CR> o<Esc>
+nmap <Leader>f :GFiles<CR>
+nmap <Leader>F :Files<CR>
+nmap <Leader>t :BTags<CR>
+" nmap <Leader>T :Tags<CR>
+" nmap <Leader>m :Methods<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>l :BLines<CR>
+nmap <Leader>L :Lines<CR>
+nmap <Leader>h :History<CR>
+" nmap <Leader>H :GHistory<CR>
+nmap <Leader>: :History:<CR>
+nmap <Leader>M :Maps<CR>
+nmap <Leader>C :Commands<CR>
+nmap <Leader>' :Marks<CR>
+nmap <Leader>s :Filetypes<CR>
+nmap <Leader>S :Snippets<CR>
+nmap <Leader><Leader>h :Helptags!<CR>
+nmap <Leader>/ :Ag<Space>
+
+" Quit
+nmap <Leader>q :q<CR>
+
+" Write
+nmap <Leader>w :w<CR>
+
+" Left mouse click enters insert mode instead of visual
+" map <LeftMouse> <LeftMouse>i
+vnoremap . :norm.<CR> " Enable . in visual mode
+nnoremap <Leader>, :nohlsearch<CR> " turn off search highlight
+noremap U <C-R> " Redo with U instead of <C-R>
+" Shift-Tab shift current line left 2 spaces in insert mode
+inoremap <S-Tab> <C-d> 
+
+" Use different key mappings for easy navigation between splits to save a keystroke. Instead of ctrl-w then j, just ctrl-j "
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+""""""""""""""
+" ************
+" END Mappings
+" ************
+""""""""""""""
+" Automatically load errors into the location list
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+"" Check for errors on open
+let g:syntastic_check_on_open = 0
+"" Check for errors on save
+let g:syntastic_check_on_wq = 1
+"" Syntastic debugger
+let g:syntastic_debug = 0
+"' Synastic ruby checker for Chef
+let g:syntastic_ruby_checkers=['mri', 'rubocop']
+" Ignore line longer than 79 chars error with flake8
+let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_python_flake8_post_args='--ignore=E501'
+let g:syntastic_python_checkers= ['flake8']
+
+"========================================================================================================================"
+" Status Line config
+"========================================================================================================================"
+"modified flag
+set statusline=%#identifier#
+set statusline+=%m
+set statusline+=%*
+set statusline+=%#PmenuSbar#
+set statusline+=%{StatuslineGit()}
+set statusline+=%*
+set statusline+=\ %-20f\     "tail of the filename
+
+"display a warning if fileformat isnt unix
+set statusline+=%#warningmsg#
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%*
+
+"display a warning if file encoding isnt utf-8
+set statusline+=%#warningmsg#
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%*
+
+set statusline+=%h      "help file flag
+
+"read only flag
+set statusline+=%#identifier#
+set statusline+=%r
+set statusline+=%*
+
+
+"display a warning if &et is wrong, or we have mixed-indenting
+set statusline+=%#error#
+set statusline+=%{StatuslineTabWarning()}
+set statusline+=%*
+
+set statusline+=\ %{StatuslineCurrentHighlight()}\ \ "current highlight
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+"display a warning if &paste is set
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
+
+set statusline+=%=      "left/right separator
+set statusline+=%#Pmenu#
+set statusline+=\ %y      "filetype
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]\ 
+set statusline+=%*
+set statusline+=%#PmenuSbar#
+set statusline+=\ %c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P\     "percent through file
+set statusline+=%#identifier#
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+set statusline+=%*
+
+set laststatus=2
+
+"minibufferexplorer settings
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplorerMoreThanOne = 0
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplUseSingleClick = 1
+let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplSplitBelow=1
+"let g:miniBufExplVSplit = 30
+
+"tslime
+"vim-rspec
+"let g:rspec_command = "!bundle exec zeus rspec -I . {spec}"
+"let g:rspec_command = "Dispatch bundle exec zeus rspec -I . {spec}"
+let g:rspec_command = "Dispatch exec zeus rspec -I . {spec}"
+"let g:rspec_command = 'call Send_to_Tmux("bundle exec zeus rspec -I . {spec}\n")'
+
+map <Leader>b :MiniBufExplorer<cr>
+
+"display tabs and trailing spaces
+set nolist
+:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+"ctags
+" set tags+=./tags;$HOME
+set tags=./tags,tags;$HOME
+let g:autotagTagsFile=".tags"
+
+"recalculate the trailing whitespace warning when idle, and after saving
+autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+
+"return '[\s]' if trailing white space is detected
+"return '' otherwise
+function! StatuslineTrailingSpaceWarning()
+  if !exists("b:statusline_trailing_space_warning")
+    if !&modifiable
+      let b:statusline_trailing_space_warning = ''
+      return b:statusline_trailing_space_warning
+    endif
+    if search('\s\+$', 'nw') != 0
+      let b:statusline_trailing_space_warning = '[\s]'
+    else
+      let b:statusline_trailing_space_warning = ''
+    endif
+  endif
+ return b:statusline_trailing_space_warning
+endfunction
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+"return the syntax highlight group under the cursor ''
+function! StatuslineCurrentHighlight()
+  let name = synIDattr(synID(line('.'),col('.'),1),'name')
+  if name == ''
+    return ''
+  else
+    return '[' . name . ']'
+  endif
+endfunction
+
+"recalculate the tab warning flag when idle and after writing
+autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
+
+"return '[&et]' if &et is set wrong
+"return '[mixed-indenting]' if spaces and tabs are used to indent
+"return an empty string if everything is fine
+function! StatuslineTabWarning()
+  if !exists("b:statusline_tab_warning")
+    let b:statusline_tab_warning = ''
+    if !&modifiable
+      return b:statusline_tab_warning
+    endif
+    let tabs = search('^\t', 'nw') != 0
+    "find spaces that arent used as alignment in the first indent column
+    let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
+    if tabs && spaces
+      let b:statusline_tab_warning =  '[mixed-indenting]'
+    elseif (spaces && !&et) || (tabs && &et)
+      let b:statusline_tab_warning = '[&et]'
+    endif
+  endif
+endfunction
