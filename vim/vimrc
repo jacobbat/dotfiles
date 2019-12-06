@@ -81,16 +81,7 @@ endfunction
 " END netrw explorer
 """
 
-" Change color schemes based on time of the day. 
-" $ITERM_PROFILE is set in the .bash_profile
-let iterm_profile = $ITERM_PROFILE
-if iterm_profile == "dark"
-    set background=dark
-    colors badwolf
-else
-    set background=light        " Set solarized background color
-    colors papercolor
-endif
+colors papercolor
 
 " Leader
 let mapleader = " "
@@ -139,6 +130,9 @@ nmap <Leader>q :q<CR>
 
 " Write
 nmap <Leader>w :w<CR>
+
+" Write Quit
+nmap <Leader>x :x<CR>
 
 " Left mouse click enters insert mode instead of visual
 " map <LeftMouse> <LeftMouse>i
