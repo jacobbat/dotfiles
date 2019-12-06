@@ -20,15 +20,16 @@ ln -s ~/dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 read -p "Press any key to continue... " -n1 -s
 
-echo "Installing packages..."
 if [ ${machine} == 'Mac' ] ; then
   echo "Install Homebrew"
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "Installing brew packages..."
   ln -s ~/dotfiles/Brewfile ~/Brewfile
   brew bundle
 fi
 
 if [ ${machine} == 'Linux' ] ; then
+  echo "Installing apt packages..."
   < ~/dotfiles/ubuntu_packages xargs sudo apt-get install -y
 fi
 
