@@ -31,6 +31,9 @@ fi
 if [ ${machine} == 'Linux' ] ; then
   echo "Installing apt packages..."
   < ~/dotfiles/ubuntu_packages xargs sudo apt-get install -y
+  echo "Install fzf from git :("
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
 fi
 
 read -p "Press any key to continue... " -n1 -s

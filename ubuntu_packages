@@ -2,7 +2,6 @@ net-tools
 vim
 kde-full
 tmux
-fzf
 git
 tree
 htop
@@ -10,3 +9,4 @@ watch
 pandoc
 bash
 bash-completion
+curl
