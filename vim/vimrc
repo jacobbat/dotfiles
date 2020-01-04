@@ -81,7 +81,7 @@ endfunction
 " END netrw explorer
 """
 
-colors papercolor
+colors PaperColor
 
 " Leader
 let mapleader = " "
