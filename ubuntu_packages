@@ -10,3 +10,4 @@ pandoc
 bash
 bash-completion
 curl
+xclip
