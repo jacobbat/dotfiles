@@ -11,3 +11,5 @@ bash
 bash-completion
 curl
 xclip
+exfat-fuse
+exfat-utils
