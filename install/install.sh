@@ -34,6 +34,10 @@ if [ ${machine} == 'Linux' ] ; then
   echo "Install fzf from git :("
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
+  echo "Installing NordVpn"
+  sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
+  sudo apt install ./nordvpn-release_1.0.0_all.deb
+  sudo apt install nordvpn
 fi
 
 read -p "Press any key to continue... " -n1 -s
