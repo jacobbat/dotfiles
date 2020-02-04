@@ -5,17 +5,17 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 Plug 'flazz/vim-colorschemes'
-Plug 'vim-syntastic/syntastic'
+Plug 'mileszs/ack.vim'                    " Ag vim wrapper
 Plug 'junegunn/fzf.vim'                   " Fzf vim wrapper
-"Plug 'ludovicchabant/vim-gutentags'       " Tag generation
+Plug 'w0rp/ale'                           " Linting
+Plug 'itchyny/lightline.vim'
 "Plug 'neoclide/coc.nvim', {'branch':'release'}
-"Plug 'neoclide/coc-python'
 " Initialize plugin system
 call plug#end()
 
 " Python paths
-let g:python_host_prog = '/usr/local/bin/python3'
-let g:python3_host_prog = '/usr/local/bin/python3'
+"let g:python_host_prog = '/usr/local/bin/python3'
+"let g:python3_host_prog = '/usr/local/bin/python3'
 
 " If using tmux and iTerm2 on OSX, the following changes the cursor from a block to a cursor
 " {{{
@@ -57,9 +57,8 @@ set splitright                  " new vertical split pane to the right
 set t_Co=256                    " tell the term has 256 colors
 set background=light            " Use colours that work well on a dark background (Console is usually black)
 set timeoutlen=1000 ttimeoutlen=0 " Eliminate ESC delay - timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
+set laststatus=2                 " Show status line
 "set paste                       " ***BREAKING TABS*** Turn off autoindent when pasting
-
-colors PaperColor
 
 " Leader is now space, using that for shortcuts
 let mapleader = " "
@@ -118,7 +117,7 @@ vnoremap . :norm.<CR> " Enable . in visual mode
 nnoremap <Leader>, :nohlsearch<CR> " turn off search highlight
 noremap U <C-R> " Redo with U instead of <C-R>
 " Shift-Tab shift current line left 2 spaces in insert mode
-inoremap <S-Tab> <C-d> 
+inoremap <S-Tab> <C-d>
 
 " Use different key mappings for easy navigation between splits to save a keystroke. Instead of ctrl-w then j, just ctrl-j "
 nnoremap <C-J> <C-W><C-J>
@@ -131,112 +130,63 @@ nnoremap <C-H> <C-W><C-H>
 " END Mappings
 " ************
 """"""""""""""
-" Automatically load errors into the location list
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"" Check for errors on open
-let g:syntastic_check_on_open = 0
-"" Check for errors on save
-let g:syntastic_check_on_wq = 1
-"" Syntastic debugger
-let g:syntastic_debug = 0
-"' Synastic ruby checker for Chef
-let g:syntastic_ruby_checkers=['mri', 'rubocop']
-" Ignore line longer than 79 chars error with flake8
-let g:syntastic_python_flake8_args='--ignore=E501'
-let g:syntastic_python_flake8_post_args='--ignore=E501'
-let g:syntastic_python_checkers= ['flake8']
 
-"========================================================================================================================"
-" Status Line config
-"========================================================================================================================"
-"modified flag
-set statusline=%#identifier#
-set statusline+=%m
-set statusline+=%*
-set statusline+=%#PmenuSbar#
-set statusline+=%{StatuslineGit()}
-set statusline+=%*
-set statusline+=\ %-20f\     "tail of the filename
+" ALE
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+nmap ]w :ALENextWrap<CR>
+nmap [w :ALEPreviousWrap<CR>
+augroup VimDiff
+  autocmd!
+  autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
+augroup END
 
-"display a warning if fileformat isnt unix
-set statusline+=%#warningmsg#
-set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-set statusline+=%*
+" Lightline
+let g:lightline = {
+\ 'colorscheme': 'PaperColor_light',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['line_total'], ['percent'], ['readonly', 'trailling_space', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK',
+\   'trailling_space': 'StatuslineTrailingSpaceWarning',
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'trailling_space': 'warning',
+\   'linter_errors': 'error',
+\ },
+\ 'component': {
+\   'line_total': '%L lines',
+\ },
+\ }
 
-"display a warning if file encoding isnt utf-8
-set statusline+=%#warningmsg#
-set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-set statusline+=%*
+colors PaperColor
 
-set statusline+=%h      "help file flag
-
-"read only flag
-set statusline+=%#identifier#
-set statusline+=%r
-set statusline+=%*
-
-
-"display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=%#error#
-set statusline+=%{StatuslineTabWarning()}
-set statusline+=%*
-
-set statusline+=\ %{StatuslineCurrentHighlight()}\ \ "current highlight
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-"display a warning if &paste is set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-
-set statusline+=%=      "left/right separator
-set statusline+=%#Pmenu#
-set statusline+=\ %y      "filetype
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]\ 
-set statusline+=%*
-set statusline+=%#PmenuSbar#
-set statusline+=\ %c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P\     "percent through file
-set statusline+=%#identifier#
-set statusline+=%{StatuslineTrailingSpaceWarning()}
-set statusline+=%*
-
-set laststatus=2
-
-"minibufferexplorer settings
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 0
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplSplitBelow=1
-"let g:miniBufExplVSplit = 30
-
-"tslime
-"vim-rspec
-"let g:rspec_command = "!bundle exec zeus rspec -I . {spec}"
-"let g:rspec_command = "Dispatch bundle exec zeus rspec -I . {spec}"
-let g:rspec_command = "Dispatch exec zeus rspec -I . {spec}"
-"let g:rspec_command = 'call Send_to_Tmux("bundle exec zeus rspec -I . {spec}\n")'
-
-map <Leader>b :MiniBufExplorer<cr>
-
-"display tabs and trailing spaces
-set nolist
-:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-
-"ctags
-" set tags+=./tags;$HOME
-set tags=./tags,tags;$HOME
-let g:autotagTagsFile=".tags"
-
-"recalculate the trailing whitespace warning when idle, and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
 
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
@@ -255,44 +205,21 @@ function! StatuslineTrailingSpaceWarning()
  return b:statusline_trailing_space_warning
 endfunction
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
 endfunction
 
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+" Update the lightline scheme from the colorscheme. Hopefully.
+function! s:UpdateLightlineColorScheme()
+  let g:lightline.colorscheme = g:colors_name
+  call lightline#init()
 endfunction
 
-"return the syntax highlight group under the cursor ''
-function! StatuslineCurrentHighlight()
-  let name = synIDattr(synID(line('.'),col('.'),1),'name')
-  if name == ''
-    return ''
-  else
-    return '[' . name . ']'
-  endif
-endfunction
-
-"recalculate the tab warning flag when idle and after writing
-autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
-
-"return '[&et]' if &et is set wrong
-"return '[mixed-indenting]' if spaces and tabs are used to indent
-"return an empty string if everything is fine
-function! StatuslineTabWarning()
-  if !exists("b:statusline_tab_warning")
-    let b:statusline_tab_warning = ''
-    if !&modifiable
-      return b:statusline_tab_warning
-    endif
-    let tabs = search('^\t', 'nw') != 0
-    "find spaces that arent used as alignment in the first indent column
-    let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
-    if tabs && spaces
-      let b:statusline_tab_warning =  '[mixed-indenting]'
-    elseif (spaces && !&et) || (tabs && &et)
-      let b:statusline_tab_warning = '[&et]'
-    endif
-  endif
-endfunction
+augroup _lightline
+  autocmd!
+  autocmd User ALELint call s:MaybeUpdateLightline()
+  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+augroup END
