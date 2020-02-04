@@ -32,19 +32,16 @@ set shiftwidth=2      		      " When indenting with '>' use 2 spaces
 set softtabstop=2               " number of spaces in tab when editing
 set expandtab                   " On pressing tab insert 2 spaces
 set updatetime=300              " You will have bad experience for diagnostic messages when it's default 4000.
-"set smarttab
-"set smartindent
-"set cindent
 set viewoptions=folds,options,cursor,unix,slash
 set autoindent                  " set auto-indenting on for programming
 set autoread                    " auto reload files in the buffer
-set noswapfile
-set showmatch                   " automatically show matching brackets. works like it does in bbedit.
+set noswapfile                  " get rid of swap
+set showmatch                   " automatically show matching brackets
 set showcmd                     " show command in bottom bar
-set cursorline                  " highlight current line (turning off due to iTerm fuzziness)
+set cursorline                  " highlight current line
 set ruler                       " show the cursor position all the time
 set mouse=a                     " Enable mouse usage
-set ttymouse=xterm2
+set ttymouse=xterm2             " mouse codes from iTem that Vim will recognize
 set guioptions+=a               " autoselect in gui mode
 set backspace=indent,eol,start  " make that backspace key work the way it should
 set showmode                    " show the current mode
@@ -62,28 +59,9 @@ set background=light            " Use colours that work well on a dark backgroun
 set timeoutlen=1000 ttimeoutlen=0 " Eliminate ESC delay - timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
 "set paste                       " ***BREAKING TABS*** Turn off autoindent when pasting
 
-"""
-" netrw explorer
-"""
-let g:netrw_banner = 0        " Directory banner is mostly useless
-let g:netrw_liststyle = 3     " Tree list view
-let g:netrw_browse_split = 2  " Open files in a new vertical split
-let g:netrw_altv = 1          " 
-augroup netrw_mapping
-    autocmd!
-    autocmd filetype netrw call NetrwMapping()
-augroup END
-
-function! NetrwMapping()
-    nnoremap <buffer> <C-L> <C-W><C-L>
-endfunction
-"""
-" END netrw explorer
-"""
-
 colors PaperColor
 
-" Leader
+" Leader is now space, using that for shortcuts
 let mapleader = " "
 
 " Use clipboard register for everything except  delete "
