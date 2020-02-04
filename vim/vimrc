@@ -23,6 +23,21 @@ Plug 'sirver/ultisnips'                                       " Code completion
 "Bundle 'scrooloose/nerdtree'
 "map <F2> :NERDTreeToggle<CR>
 
+" Initialize plugin system
+call plug#end()
+
+
+" Powerline setup
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+set laststatus=2
+
 """"NEED TO SEE IF THESE SHOULD BE BROUGHT BACK IN"""""
 function! _blockcomment()
 " From http://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
@@ -83,6 +98,8 @@ endif
 endfunction
 """"""""""""""""COMMENTED OUT ABOVE FOR NOW"""""""""""""""
 
+""""JACOB ORIGINAL"""""
+function! _jacoboriginalcomment()
 set tabstop=2                   " Show existing tab with 2 spaces
 set shiftwidth=2      		" When indenting with '>' use 2 spaces
 set softtabstop=2               " number of spaces in tab when editing
@@ -352,3 +369,7 @@ function! StatuslineTabWarning()
     endif
   endif
 endfunction
+
+
+endfunction
+""""""""""""""""COMMENTED OUT ABOVE FOR NOW"""""""""""""""
