@@ -4,18 +4,11 @@ syntax on
 filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
-Plug 'flazz/vim-colorschemes'
-Plug 'mileszs/ack.vim'                    " Ag vim wrapper
-Plug 'junegunn/fzf.vim'                   " Fzf vim wrapper
-Plug 'w0rp/ale'                           " Linting
-Plug 'itchyny/lightline.vim'
-"Plug 'neoclide/coc.nvim', {'branch':'release'}
-" Initialize plugin system
-call plug#end()
-
-" Python paths
-"let g:python_host_prog = '/usr/local/bin/python3'
-"let g:python3_host_prog = '/usr/local/bin/python3'
+Plug 'flazz/vim-colorschemes'       " Colors
+Plug 'junegunn/fzf.vim'             " Fzf vim wrapper
+Plug 'w0rp/ale'                     " Linting
+Plug 'itchyny/lightline.vim'        " Lightweight status line
+call plug#end() " Initialize plugin system
 
 " If using tmux and iTerm2 on OSX, the following changes the cursor from a block to a cursor
 " {{{
@@ -27,6 +20,10 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 " }}}
+
+" -----------
+" Options
+" -----------
 set tabstop=2                   " Show existing tab with 2 spaces
 set shiftwidth=2      		      " When indenting with '>' use 2 spaces
 set softtabstop=2               " number of spaces in tab when editing
@@ -58,58 +55,44 @@ set t_Co=256                    " tell the term has 256 colors
 set background=light            " Use colours that work well on a dark background (Console is usually black)
 set timeoutlen=1000 ttimeoutlen=0 " Eliminate ESC delay - timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
 set laststatus=2                 " Show status line
-"set paste                       " ***BREAKING TABS*** Turn off autoindent when pasting
+set clipboard=unnamed            " Use clipboard register for everything except delete
+set path+=**                     " Search down into subfolders
+set wildmenu                     " Display all matching files when we tab complete
+set rtp+=/usr/local/opt/fzf      " Enable fzf
 
 " Leader is now space, using that for shortcuts
-let mapleader = " "
+let mapleader = ' '
 
-" Use clipboard register for everything except  delete "
-set clipboard=unnamed
-
-" FINDING FILES
-" Search down into subfolders
-" Provides tab-completion for all file-related tasks
-set path+=**
-set wildmenu " Display all matching files when we tab complete
-
-" Fzf fuzzy finders
-set rtp+=/usr/local/opt/fzf " Enable fzf
-
-""""""""""""""
-" ************
+" -----------
 " Mappings
-" ************
-""""""""""""""
-" Open lines, but stay in normal mode
-nmap <S-CR> O<Esc>
-nmap <CR> o<Esc>
-nmap <Leader>f :GFiles<CR>
-nmap <Leader>F :Files<CR>
-nmap <Leader>t :BTags<CR>
-" nmap <Leader>T :Tags<CR>
-" nmap <Leader>m :Methods<CR>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>l :BLines<CR>
-nmap <Leader>L :Lines<CR>
-nmap <Leader>h :History<CR>
-" nmap <Leader>H :GHistory<CR>
-nmap <Leader>: :History:<CR>
-nmap <Leader>M :Maps<CR>
-nmap <Leader>C :Commands<CR>
+" -----------
+nmap <Leader>f :GFiles<CR> " Fzf files tracked by Git
+nmap <Leader>F :Files<CR> " Fzf files in path
+nmap <Leader>b :Buffers<CR> " Fzf buffers
+nmap <Leader>a :ALEToggleBuffer<CR>  " Toggles lint/syntax
+nmap <Leader>c :setlocal list!<CR>:setlocal list?<CR> " Toggle displaying all characters:
+nmap <Leader>s :setlocal invspell<CR> " Toggle spellcheck
+nmap <Leader>h :History:<CR>  " Fzf vim command history
+nmap <Leader>: :History<CR>   " Fzf open file history
+nmap <Leader>M :Maps<CR>      " Fzf browse shortcut mappings
 nmap <Leader>' :Marks<CR>
-nmap <Leader>s :Filetypes<CR>
-nmap <Leader>S :Snippets<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
-nmap <Leader>/ :Ag<Space>
+nmap <Leader>/ :Ag<Space> " Search all files in path for string
+nmap <C-e> :e#<CR>     " Open previous buffer
+nmap <C-n> :bnext<CR>  " Move between open buffers.
+nmap <C-p> :bprev<CR>  " Move between open buffers.
+nmap <Leader>q :q<CR>  " Quit
+nmap <Leader>w :w<CR>  " Write
+nmap <Leader>x :x<CR>  " Write Quit
+nmap <CR> o<Esc>       " Open lines, but stay in normal mode
+nmap <Leader>j :ALENextWrap<CR>
+nmap <Leader>k :ALEPreviousWrap<CR>
 
-" Quit
-nmap <Leader>q :q<CR>
-
-" Write
-nmap <Leader>w :w<CR>
-
-" Write Quit
-nmap <Leader>x :x<CR>
+" Use different key mappings for easy navigation between splits to save a keystroke. Instead of ctrl-w then j, just ctrl-j "
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Left mouse click enters insert mode instead of visual
 " map <LeftMouse> <LeftMouse>i
@@ -119,25 +102,13 @@ noremap U <C-R> " Redo with U instead of <C-R>
 " Shift-Tab shift current line left 2 spaces in insert mode
 inoremap <S-Tab> <C-d>
 
-" Use different key mappings for easy navigation between splits to save a keystroke. Instead of ctrl-w then j, just ctrl-j "
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-""""""""""""""
-" ************
-" END Mappings
-" ************
-""""""""""""""
-
+" -----
 " ALE
+" -----
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
-nmap ]w :ALENextWrap<CR>
-nmap [w :ALEPreviousWrap<CR>
 augroup VimDiff
   autocmd!
   autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
@@ -147,7 +118,7 @@ augroup END
 let g:lightline = {
 \ 'colorscheme': 'PaperColor_light',
 \ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'left': [['relativepath', 'modified']],
 \   'right': [['line_total'], ['percent'], ['readonly', 'trailling_space', 'linter_warnings', 'linter_errors', 'linter_ok']]
 \ },
 \ 'component_expand': {
@@ -169,6 +140,9 @@ let g:lightline = {
 
 colors PaperColor
 
+" -----------
+" Functions
+" -----------
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
