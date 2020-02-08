@@ -18,6 +18,9 @@ echo "Setting shortcuts for dotfiles"
 ln -s ~/dotfiles/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/vim/linters/flake8 ~/.config/flake8
+mkdir ~/.config/yamllint
+ln -s ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
 read -p "Press any key to continue... " -n1 -s
 
 if [ ${machine} == 'Mac' ] ; then
@@ -34,7 +37,7 @@ if [ ${machine} == 'Linux' ] ; then
   sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
   sudo apt install ./nordvpn-release_1.0.0_all.deb
   sudo add-apt-repository ppa:phoerious/keepassxc
-  sudo apt update 
+  sudo apt update
   < ~/dotfiles/ubuntu_packages xargs sudo apt-get install -y
   echo "Install fzf from git :("
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

@@ -1,7 +1,5 @@
 net-tools
 vim
-kde-full
-latte-dock
 tmux
 git
 tree
@@ -14,5 +12,7 @@ curl
 xclip
 exfat-fuse
 exfat-utils
+latte-dock
 nordvpn
+kde-full
 keepassxc 

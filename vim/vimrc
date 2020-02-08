@@ -73,7 +73,6 @@ nmap <Leader>a :ALEToggleBuffer<CR>  " Toggles lint/syntax
 nmap <Leader>c :setlocal list!<CR>:setlocal list?<CR> " Toggle displaying all characters:
 nmap <Leader>s :setlocal invspell<CR> " Toggle spellcheck
 nmap <Leader>h :History:<CR>  " Fzf vim command history
-nmap <Leader>: :History<CR>   " Fzf open file history
 nmap <Leader>M :Maps<CR>      " Fzf browse shortcut mappings
 nmap <Leader>' :Marks<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
@@ -100,8 +99,7 @@ nnoremap <C-H> <C-W><C-H>
 vnoremap . :norm.<CR> " Enable . in visual mode
 nnoremap <Leader>, :nohlsearch<CR> " turn off search highlight
 noremap U <C-R> " Redo with U instead of <C-R>
-" Shift-Tab shift current line left 2 spaces in insert mode
-inoremap <S-Tab> <C-d>
+inoremap <S-Tab> <C-d> " Shift-Tab shift current line left 2 spaces in insert mode
 
 " -----
 " ALE
