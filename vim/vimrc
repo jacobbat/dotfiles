@@ -59,6 +59,7 @@ set clipboard=unnamed            " Use clipboard register for everything except 
 set path+=**                     " Search down into subfolders
 set wildmenu                     " Display all matching files when we tab complete
 set rtp+=/usr/local/opt/fzf      " Enable fzf
+set rtp+=~/.fzf                  " Enable fzf on Linux
 
 " Leader is now space, using that for shortcuts
 let mapleader = ' '
