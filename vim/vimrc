@@ -72,7 +72,9 @@ nmap <Leader>b :Buffers<CR> " Fzf buffers
 nmap <Leader>a :ALEToggleBuffer<CR>  " Toggles lint/syntax
 nmap <Leader>c :setlocal list!<CR>:setlocal list?<CR> " Toggle displaying all characters:
 nmap <Leader>s :setlocal invspell<CR> " Toggle spellcheck
-nmap <Leader>h :History:<CR>  " Fzf vim command history
+" TODO: Command history can be searched, but they're not executing
+nmap <Leader>: :History:<CR>  " Fzf vim command history
+nmap <Leader>h :History<CR>   " Fzf open file history
 nmap <Leader>M :Maps<CR>      " Fzf browse shortcut mappings
 nmap <Leader>' :Marks<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
