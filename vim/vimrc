@@ -79,6 +79,7 @@ nmap <Leader>' :Marks<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
 nmap <Leader>/ :Ag<Space> " Search all files in path for string
 nmap <C-e> :e#<CR>     " Open previous buffer
+nmap <Leader>e :e#<CR>     " Open previous buffer
 nmap <C-n> :bnext<CR>  " Move between open buffers.
 nmap <C-p> :bprev<CR>  " Move between open buffers.
 nmap <Leader>q :q<CR>  " Quit
