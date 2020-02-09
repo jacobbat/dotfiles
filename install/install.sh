@@ -8,9 +8,9 @@ set_os_vars() {
                   alias_file=~/.bashrc
                   bash_profile_file=~/.bashrc
                   if [ -n "$(command -v yum)" ]  ; then
-                    package_manager=${pkg_mgr:-yum}
+                    pkg_mgr=${pkg_mgr:-yum}
                   elif [ -n "$(command -v apt)" ]  ; then
-                    package_manager=${pkg_mgr:-apt-get}
+                    pkg_mgr=${pkg_mgr:-apt-get}
                   fi
                   ;;
       Darwin*)    machine=Mac
@@ -56,22 +56,27 @@ install_packages() {
   fi
 
   if [ ${machine} == 'Linux' ] ; then
+    logger "Installing core linux packages..."
+    < ~/dotfiles/linux_packages xargs sudo ${pkg_mgr} install -y
+
     ask "Do you want to install linux desktop packages?"
     linux_desktop_packages=$?
-    if [ $linux_desktop_packages -eq 0 ]; then
+    if [ $linux_desktop_packages -eq 1 ]; then
       install_linux_dekstop_packages
     fi
 
-    logger "Installing core linux packages..."
-    < ~/dotfiles/linux_packages xargs sudo ${pkg_mgr} install -y
-    logger "Installing fzf from git..."
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
+    if [ ! -n "$(command -v fzf)" ]  ; then
+      logger "Installing fzf from git..."
+      git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+      ~/.fzf/install
+    fi
   fi
 
-  logger "Installing Vim plugin manager..."
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  if [ ! -f ~/.vim/autoload/plug.vim ] ; then
+    logger "Installing Vim plugin manager..."
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  fi
 }
 
 install_linux_dekstop_packages() {
