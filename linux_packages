@@ -9,3 +9,4 @@ pandoc
 bash
 bash-completion
 curl
+yamllint
