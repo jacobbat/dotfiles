@@ -41,8 +41,8 @@ create_symlinks() {
   ln -s ~/dotfiles/gitconfig ~/.gitconfig
   ln -s ~/dotfiles/vim/vimrc ~/.vimrc
   ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+  mkdir -p ~/.config/yamllint
   ln -s ~/dotfiles/vim/linters/flake8 ~/.config/flake8
-  mkdir ~/.config/yamllint
   ln -s ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
 }
 
@@ -56,9 +56,13 @@ install_packages() {
   fi
 
   if [ ${machine} == 'Linux' ] ; then
-    logger "Installing linux packages..."
-    install_linux_dekstop_packages
-    sudo apt update
+    ask "Do you want to install linux desktop packages?"
+    linux_desktop_packages=$?
+    if [ $linux_desktop_packages -eq 0 ]; then
+      install_linux_dekstop_packages
+    fi
+
+    logger "Installing core linux packages..."
     < ~/dotfiles/linux_packages xargs sudo ${pkg_mgr} install -y
     logger "Installing fzf from git..."
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -71,18 +75,24 @@ install_packages() {
 }
 
 install_linux_dekstop_packages() {
-    echo -n "Install Linux desktop packages? y or n? "
-    read REPLY
-    case $REPLY in
-    [Yy])     logger "Installing repos for NordVpn and KeePass"
-              sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
-              sudo apt install ./nordvpn-release_1.0.0_all.deb
-              sudo add-apt-repository ppa:phoerious/keepassxc
-              < ~/dotfiles/linux_desktop_packages xargs sudo ${pkg_mgr} install -y
-              ;; # you can change what you do here for instance
-    [Nn]) break ;;        # exit case statement gracefully
-       *) ;;
-    esac
+  logger "Installing repos for NordVpn and KeePass"
+  sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
+  sudo apt install ./nordvpn-release_1.0.0_all.deb
+  sudo add-apt-repository ppa:phoerious/keepassxc
+  sudo apt update
+  < ~/dotfiles/linux_desktop_packages xargs sudo ${pkg_mgr} install -y
+}
+
+ask() {
+  while true; do
+    read -p "$1 ([y]/n) " -r
+    REPLY=${REPLY:-"y"}
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      return 1
+    elif [[ $REPLY =~ ^[Nn]$ ]]; then
+      return 0
+    fi
+  done
 }
 
 
