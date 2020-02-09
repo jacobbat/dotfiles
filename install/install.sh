@@ -46,30 +46,38 @@ create_symlinks() {
   ln -s ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
 }
 
-install_packages() {
-  if [ ${machine} == 'Mac' ] ; then
+install_mac_packages() {
+  if [ ! -n "$(command -v fzf)" ]  ; then
     logger "Installing Homebrew..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    logger "Installing brew packages..."
-    ln -s ~/dotfiles/Brewfile ~/Brewfile
-    brew bundle
+  fi
+  ln -s ~/dotfiles/Brewfile ~/Brewfile
+  logger "Installing brew packages..."
+  brew bundle
+}
+
+install_linux_packages(){
+  logger "Installing core linux packages..."
+  < ~/dotfiles/linux_packages xargs sudo ${pkg_mgr} install -y
+
+  ask "Do you want to install linux desktop packages?"
+  linux_desktop_packages=$?
+  if [ $linux_desktop_packages -eq 1 ]; then
+    install_linux_dekstop_packages
   fi
 
-  if [ ${machine} == 'Linux' ] ; then
-    logger "Installing core linux packages..."
-    < ~/dotfiles/linux_packages xargs sudo ${pkg_mgr} install -y
+  if [ ! -n "$(command -v fzf)" ]  ; then
+    logger "Installing fzf from git..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+  fi
+}
 
-    ask "Do you want to install linux desktop packages?"
-    linux_desktop_packages=$?
-    if [ $linux_desktop_packages -eq 1 ]; then
-      install_linux_dekstop_packages
-    fi
-
-    if [ ! -n "$(command -v fzf)" ]  ; then
-      logger "Installing fzf from git..."
-      git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-      ~/.fzf/install
-    fi
+install_packages() {
+  if [ ${machine} == 'Mac' ] ; then
+    install_mac_packages
+  elif [ ${machine} == 'Linux' ] ; then
+    install_linux_packages
   fi
 
   if [ ! -f ~/.vim/autoload/plug.vim ] ; then
