@@ -79,7 +79,8 @@ nmap <Leader>h :History<CR>   " Fzf open file history
 nmap <Leader>M :Maps<CR>      " Fzf browse shortcut mappings
 nmap <Leader>' :Marks<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
-nmap <Leader>/ :Ag<Space> " Search all files in path for string
+" Search all files in path for string
+nmap <Leader>/ :Ag<Space>
 nmap <C-e> :e#<CR>     " Open previous buffer
 nmap <Leader>e :e#<CR>     " Open previous buffer
 nmap <C-n> :bnext<CR>  " Move between open buffers.

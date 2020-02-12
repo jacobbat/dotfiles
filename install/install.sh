@@ -9,6 +9,9 @@ set_os_vars() {
                   bash_profile_file=~/.bashrc
                   if [ -n "$(command -v yum)" ]  ; then
                     pkg_mgr=${pkg_mgr:-yum}
+                    # Enable epel
+                    sudo yum install -y epel-release
+                    sudo yum-config-manager --enable epel
                   elif [ -n "$(command -v apt)" ]  ; then
                     pkg_mgr=${pkg_mgr:-apt-get}
                   fi
