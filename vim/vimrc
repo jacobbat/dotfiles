@@ -88,6 +88,9 @@ nmap <C-p> :bprev<CR>  " Move between open buffers.
 nmap <Leader>q :q<CR>  " Quit
 nmap <Leader>w :w<CR>  " Write
 nmap <Leader>x :x<CR>  " Write Quit
+" Open bash terminal
+nmap <Leader>t :term bash<CR>
+
 nmap <CR> o<Esc>       " Open lines, but stay in normal mode
 nmap <Leader>j :ALENextWrap<CR>
 nmap <Leader>k :ALEPreviousWrap<CR>
@@ -122,7 +125,7 @@ let g:lightline = {
 \ 'colorscheme': 'PaperColor_light',
 \ 'active': {
 \   'left': [['relativepath', 'modified']],
-\   'right': [['line_total'], ['percent'], ['readonly', 'trailling_space', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\   'right': [['line_total'], ['percent'], ['column'], ['readonly', 'trailling_space', 'linter_warnings', 'linter_errors', 'linter_ok']]
 \ },
 \ 'component_expand': {
 \   'linter_warnings': 'LightlineLinterWarnings',
