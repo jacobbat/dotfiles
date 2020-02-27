@@ -1,0 +1,31 @@
+# Tech
+        http://localhost:0001 "~# Tech"
+https://www.schneier.com/blog/atom.xml "~Schneier on Security" blog
+http://vimcasts.org/feeds/quicktime.rss "~Vimcasts" blog
+https://kubernetes.io/feed.xml "~Kuberentes" blog
+https://nakedsecurity.sophos.com/feed/ "~Naked Security" blog
+https://codeascraft.com/feed/atom/ "~Etsy Code as Craft" blog
+https://aws.amazon.com/blogs/architecture/feed/ "~AWS Architect" blog
+
+# Finance
+        http://localhost:0002 "~# Finance"
+https://feeds.feedburner.com/mrmoneymustache "~Mr. Money Mustache" blog
+https://www.getrichslowly.org/feed/ "~Get Rich Slowly" blog
+https://www.financialsamurai.com/feed/ "~Financial Samurai" blog
+http://feeds.feedburner.com/EarlyRetirementExtreme "~Early Retirement Extreme" blog
+https://affordanything.com/blog/feed/ "~Afford Anything" blog
+https://wallethacks.com/blog/feed/ "~Wallet Hacks" blog
+
+# Science
+        http://localhost:0003 "~# Science"
+https://phys.org/rss-feed/ "~Phys Org" news
+https://www.popsci.com/arcio/rss/ "~Pop Sci" news
+
+# News
+        http://localhost:0004 "~# News"
+https://news.ycombinator.com/rss "~Hacker News Combinator" news
+
+# Backpacking Gear Sale
+        http://localhost:0005 "~# Backpacking"
+https://www.hammockforums.net/forum/external.php?type=RSS2&forumids=154 "~Hammockforum Sale" forum
+https://backpackinglight.com/forums/forum/commerce/gear-swap/feed "~# Backpackinglight Gear Swap" forum
