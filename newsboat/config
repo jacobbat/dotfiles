@@ -5,7 +5,7 @@ unbind-key Q # hard-quit
 unbind-key r # reload
 unbind-key R # reload-all
 unbind-key A # mark-feed-read
-unbind-key C # mark-all-feeds-read
+#unbind-key C # mark-all-feeds-read
 unbind-key s # save
 unbind-key n # next-unread
 unbind-key p # prev-unread
@@ -66,7 +66,7 @@ bind-key e edit-urls
 bind-key F clear-filter
 bind-key f select-filter
 bind-key G end
-bind-key gg home
+bind-key g home
 bind-key H prev-dialog
 bind-key h quit
 bind-key j down
@@ -75,7 +75,6 @@ bind-key K prev-unread
 bind-key k up
 bind-key L next-dialog
 bind-key l open
-bind-key M mark-all-feeds-read
 bind-key O open-all-unread-in-browser-and-mark-read
 bind-key o open-in-browser
 bind-key q hard-quit

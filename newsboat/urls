@@ -7,11 +7,11 @@ https://codeascraft.com/feed/atom/ "~Etsy Code as Craft" blog
 https://aws.amazon.com/blogs/architecture/feed/ "~AWS Architect" blog
 https://feeds.feedburner.com/HighScalability "~High Scalability" blog
 https://technologyconversations.com/feed "~Technology Conversations" blog
-https://www.techrockies.com/news/news.rss "~Tech Rockies" blog
 https://www.infoq.com/rss/rss.action "~Infoq" blog
 https://www.robustperception.io/feed/ "~Robust Perception" blog
 https://www.selikoff.net/feed/ "~Down Home Country Coding" blog
 https://krebsonsecurity.com/feed/ "~Krebs on Security" blog
+https://www.techrockies.com "~Tech Rockies" blog
 
 # Finance
         http://localhost:0002 "~# Finance"
