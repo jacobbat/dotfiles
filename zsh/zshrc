@@ -1,0 +1,191 @@
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/chirsch/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster"
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# https://github.com/Powerlevel9k/powerlevel9k/wiki/Stylizing-Your-Prompt
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
+# Show all the icons
+#We provide a function that will print every icon name in the theme. To get a full list of icons 
+# just type get_icon_names in your terminal.
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(icons_test)
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+DISABLE_AUTO_UPDATE="false"
+DISABLE_UPDATE_PROMPT="false"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(aws brew common-aliases docker fzf git gitfast git-extras git-flow-completion git-remote-branch history oc kubectl kube-ps1 terraform)
+
+
+# User configuration
+
+export PATH="/usr/local/bin:/opt/local/sbin:/Users/chirsch/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:~/src/go/bin:/usr/local/bin:/sw/bin:/Users/chirsch/src/android/android-sdk-mac_x86/platform-tools:/usr/local/git/bin:/Users/chirsch/src/pebble-dev/PebbleSDK-3.1/bin:/Users/chirsch/src/mongodb/mongodb-osx-x86_64-2.2.0/bin"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+#JAVA_VERSION=1.8.0_101
+JAVA_VERSION=jdk-13.0.1
+# Java 1.7 for compling ClickFox
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/$JAVA_VERSION.jdk/Contents/Home
+PATH=~/bin:/Library/Java/JavaVirtualMachines/$JAVA_VERSION.jdk/Contents/Home/jre/bin:$PATH:/usr/local/bin:/sw/bin:/Users/chirsch/src/android/android-sdk-mac_x86/platform-tools:/usr/local/git/bin:~/src/pebble-dev/PebbleSDK-3.1/bin
+
+# For mongodb
+PATH=$PATH:/Users/chirsch/src/mongodb/mongodb-osx-x86_64-2.2.0/bin
+#alias cd=pushd
+#alias cdp=popd
+alias ll='ls -la'
+set -o vi
+
+#Miami ISO stuff
+alias m1p='ssh -D 1080 chirsch@161.69.46.16'
+alias chrom='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-server="socks5://localhost:1080"'
+
+# MacPorts Installer addition on 2014-04-30_at_17:32:58: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# For packer
+export PATH=~/Downloads/packer:$PATH
+export GOPATH="/Users/chirsch/src/go/"
+export GOROOT=/usr/local/opt/go/libexec
+
+# For Docker
+#$(boot2docker shellinite
+# No longer needed do to docker for osx
+#eval $(docker-machine env default)
+
+
+# Start/Stop indexing on all volumes
+alias spotlightoff='sudo mdutil -a -i off'
+alias spotlighton='sudo mdutil -a -i on'
+
+# load/unload indexing on all volumes
+alias spotlightunload='sudo launchctl unload -w \
+	 /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
+alias spotlightload='sudo launchctl load -w \
+	 /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
+
+alias g='git'
+
+# fshow - git commit browser
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+alias glog=fshow
+alias tp='terraform plan'
+alias ta='terraform apply'
+alias rs='rsync -av --progress'
+
+#alias vi='/usr/local/bin/vim'
+# To get ctrl-r history search
+bindkey "^R" history-incremental-search-backward
+
+# use esc-v to edit the vim command line IN vim
+bindkey -M vicmd v edit-command-line
+
+# https://hub.github.com/
+# Makes git github compatible
+alias h=hub
+
+#alias htop=glances
+
+#alias jobs='print "Remember %n to fg!\n";jobs'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#PS1="%{%f%b%k%}$(build_prompt) 🐓💩🔜 "
+
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+alias cssh=i2cssh
+
+alias kc=kubectl
+alias ga="git add -p"
+alias cat="bat"
+
+# Needed so that pgp prompt doesn't try for GUI
+export GPG_TTY=$(tty)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+ 
