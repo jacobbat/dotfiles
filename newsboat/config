@@ -105,6 +105,12 @@ bind-key u pageup article
 # Set the browser command to use when opening an article in the browser.
 browser open
 
+# Enable reloading all feeds periodically.
+auto-reload yes
+
+# Use custom renderer for displaying HTML files.
+html-renderer "w3m -dump -T text/html"
+
 # Define the date format in the article list.
 datetime-format "%Y-%m-%d"
 
