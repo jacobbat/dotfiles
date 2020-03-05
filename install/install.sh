@@ -48,6 +48,8 @@ create_symlinks() {
   mkdir -p ~/.newsboat
   ln -s ~/dotfiles/newsboat/config ~/.newsboat/config
   ln -s ~/dotfiles/newsboat/urls ~/.newsboat/urls
+  ln -s ~/dotfiles/w3m/config ~/.w3m/config
+  ln -s ~/dotfiles/w3m/keymap ~/.w3m/keymap
   ln -s ~/dotfiles/vim/linters/flake8 ~/.config/flake8
   ln -s ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
 }

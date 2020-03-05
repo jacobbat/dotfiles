@@ -103,7 +103,7 @@ bind-key d pagedown article
 bind-key u pageup article
 
 # Set the browser command to use when opening an article in the browser.
-browser open
+browser w3m
 
 # Enable reloading all feeds periodically.
 auto-reload yes
