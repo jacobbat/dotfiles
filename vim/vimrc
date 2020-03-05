@@ -82,7 +82,8 @@ nmap <Leader><Leader>h :Helptags!<CR>
 " Search all files in path for string
 nmap <Leader>/ :Ag<Space>
 nmap <C-e> :e#<CR>     " Open previous buffer
-nmap <Leader>e :e#<CR>     " Open previous buffer
+" Edit document
+nmap <Leader>e :e<Space>
 nmap <C-n> :bnext<CR>  " Move between open buffers.
 nmap <C-p> :bprev<CR>  " Move between open buffers.
 nmap <Leader>q :q<CR>  " Quit
