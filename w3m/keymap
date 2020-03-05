@@ -156,8 +156,6 @@ keymap :: COMMAND
 keymap :H HELP
 
 ########## history navigation ##########
-keymap L NEXT
-keymap H PREV
 keymap :h SELECT_MENU
 #keymap :h HISTORY
 
@@ -225,6 +223,11 @@ keymap N SEARCH_PREV
 ########## bookmarks ##########
 keymap a ADD_BOOKMARK
 keymap :b VIEW_BOOKMARK
+
+########## buffer ##########
+keymap L NEXT
+keymap H PREV
+keymap x BACK
 
 ########## tab ##########
 keymap d CLOSE_TAB
