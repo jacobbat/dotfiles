@@ -160,22 +160,20 @@ keymap :h SELECT_MENU
 #keymap :h HISTORY
 
 ########## scrolling ##########
-keymap C-e DOWN
-keymap C-y UP
+keymap k DOWN
+keymap j UP
 keymap gg BEGIN
 keymap G END
-keymap C-d NEXT_PAGE
-keymap C-u PREV_PAGE
+keymap d NEXT_PAGE
+keymap u PREV_PAGE
 keymap zz CENTER_V
 ########## cursor ##########
 keymap l MOVE_RIGHT
 keymap h MOVE_LEFT
-keymap j MOVE_DOWN1
-keymap k MOVE_UP1
-keymap C-l MOVE_RIGHT
-keymap C-h MOVE_LEFT
 keymap C-j MOVE_DOWN1
 keymap C-k MOVE_UP1
+keymap C-l MOVE_RIGHT
+keymap C-h MOVE_LEFT
 keymap RIGHT MOVE_RIGHT
 keymap LEFT MOVE_LEFT
 keymap DOWN MOVE_DOWN1
@@ -230,7 +228,7 @@ keymap H PREV
 keymap x BACK
 
 ########## tab ##########
-keymap d CLOSE_TAB
+keymap X CLOSE_TAB
 keymap gh GOTO http://www.google.com/en
 keymap gH TAB_GOTO http://www.google.com/en
 keymap C-t NEW_TAB
