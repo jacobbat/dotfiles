@@ -38,3 +38,5 @@
 	helper = cache --timeout 2592000
 [pull]
 	rebase = true
+[user]
+	signingkey = 0F8A57EAE2B0D711
