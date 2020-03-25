@@ -6,11 +6,9 @@ https://nakedsecurity.sophos.com/feed/ "~Naked Security" blog
 https://codeascraft.com/feed/atom/ "~Etsy Code as Craft" blog
 https://aws.amazon.com/blogs/architecture/feed/ "~AWS Architect" blog
 https://feeds.feedburner.com/HighScalability "~High Scalability" blog
-https://technologyconversations.com/feed "~Technology Conversations" blog
 https://www.infoq.com/rss/rss.action "~Infoq" blog
 https://www.robustperception.io/feed/ "~Robust Perception" blog
 https://krebsonsecurity.com/feed/ "~Krebs on Security" blog
-https://www.techrockies.com "~Tech Rockies" blog
 
 # Finance
         http://localhost:0002 "~# Finance"
@@ -26,11 +24,15 @@ https://wallethacks.com/blog/feed/ "~Wallet Hacks" blog
 https://phys.org/rss-feed/ "~Phys Org" news
 https://www.popsci.com/arcio/rss/ "~Pop Sci" news
 
+# Misc
+        http://localhost:0004 "~# Misc"
+https://waitbutwhy.com/feed "~Wait But Why" Misc
+
 # News
-        http://localhost:0004 "~# News"
+        http://localhost:0005 "~# News"
 https://news.ycombinator.com/rss "~Hacker News Combinator" news
 
 # Backpacking Gear Sale
-        http://localhost:0005 "~# Backpacking"
+        http://localhost:0006 "~# Backpacking"
 https://www.hammockforums.net/forum/external.php?type=RSS2&forumids=154 "~Hammockforum Sale" forum
 https://backpackinglight.com/forums/forum/commerce/gear-swap/feed "~# Backpackinglight Gear Swap" forum
