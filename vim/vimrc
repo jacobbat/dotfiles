@@ -20,6 +20,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fzf vim wrap
 Plug 'w0rp/ale'                     " Linting
 Plug 'itchyny/lightline.vim'        " Lightweight status line
 Plug 'sirver/ultisnips'                                       " Code completion
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " GoLang development
 "Bundle "godlygeek/tabular"
 "" Nerdtree setup
 "Bundle 'scrooloose/nerdtree'
@@ -46,7 +47,8 @@ function! _blockcomment()
 set nocompatible
 filetype off
 
-
+" Golang setup
+let g:go_fmt_command = "goimports"
 
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-syntastic/syntastic'
