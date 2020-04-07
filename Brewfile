@@ -15,6 +15,8 @@ brew "findutils"
 brew "flake8"
 brew "fzf"
 brew "git"
+# Similar to htop but more details
+brew "glances"
 brew "htop"
 brew "newsboat"
 brew "pandoc"
