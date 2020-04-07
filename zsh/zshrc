@@ -72,7 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws brew common-aliases docker fzf gcloud git gitfast git-extras git-flow-completion git-remote-branch history oc osx kubectl kube-ps1 terraform tmux)
+plugins=(aws common-aliases docker fzf gcloud git gitfast git-extras git-flow-completion git-remote-branch history oc osx kubectl kube-ps1 terraform tmux)
 
 
 # User configuration
