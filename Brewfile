@@ -62,6 +62,7 @@ cask "google-cloud-sdk"
 cask "imagealpha"
 cask "imageoptim"
 cask "istat-menus"
+cask "iterm"
 # Great copy and paste management tool
 cask "jumpcut"
 cask "keybase"

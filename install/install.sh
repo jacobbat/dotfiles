@@ -54,6 +54,7 @@ create_symlinks() {
 
 oh_my_zsh() {
   ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
 install_mac_packages() {
