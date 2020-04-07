@@ -55,7 +55,8 @@ create_symlinks() {
 oh_my_zsh() {
   logger "Installing Oh My ZSH"
   ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
-  wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh /tmp/install.sh
+  wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/install.sh
+  chmod 755 /tmp/install.sh
   RUNZSH='no' /tmp/install.sh --keep-zshrc
 }
 
