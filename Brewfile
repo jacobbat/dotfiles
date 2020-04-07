@@ -18,6 +18,11 @@ brew "git"
 # Similar to htop but more details
 brew "glances"
 brew "htop"
+brew "kubernetes-cli"
+brew "kubectx"
+# See K8S resources in realtime 
+brew "kubespy"
+brew "minikube"
 brew "newsboat"
 brew "pandoc"
 brew "python"
