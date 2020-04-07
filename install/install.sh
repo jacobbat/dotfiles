@@ -55,7 +55,8 @@ create_symlinks() {
 oh_my_zsh() {
   logger "Installing Oh My ZSH"
   ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
-  sh -c "$(RUNZSH='no' curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh --keep-zshrc)"
+  wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh /tmp/install.sh
+  RUNZSH='no' /tmp/install.sh --keep-zshrc
 }
 
 install_mac_packages() {
