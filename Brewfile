@@ -20,7 +20,6 @@ brew "glances"
 brew "htop"
 brew "newsboat"
 brew "pandoc"
-brew "powershell"
 brew "python"
 brew "rename"
 brew "speedtest"
@@ -69,10 +68,11 @@ cask "meld"
 cask "namechanger"
 # VPN Provider
 cask "mullvadvpn"
-# Graphical REST Tool
-cask "postman"
 # Podcatcher
 cask "pocket-casts"
+# Graphical REST Tool
+cask "postman"
+cask "powershell"
 # SMS across devices
 cask "pulse-sms"
 # QuickLook ColorCode for Finder
