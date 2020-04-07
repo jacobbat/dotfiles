@@ -40,26 +40,38 @@ brew "zsh"
 # Great USB Imager
 cask "balenaetcher"
 cask "caffeine"
+# Ebook Organizer
+cask "calibre"
 cask "cyberduck"
 # Database GUI
 cask "dbeaver-community"
 cask "docker"
 cask "evernote"
+cask "firefox"
 # Best screen color changer (for day/night)
 cask "flux"
-cask "firefox"
+# Excellent Git GUI
+cask "fork"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "imagealpha"
 cask "imageoptim"
+cask "istat-menus"
+cask "keybase"
 # Animated Screen Capture
 cask "licecap"
+# Graphical Diff
+cask "meld"
 # Rename a list of files quickly
 cask "namechanger"
 # VPN Provider
 cask "mullvadvpn"
+# Graphical REST Tool
+cask "postman"
 # Podcatcher
 cask "pocket-casts"
+# SMS across devices
+cask "pulse-sms"
 # QuickLook ColorCode for Finder
 cask "qlcolorcode"
 # QuickLook Image Size for Finder
@@ -68,6 +80,8 @@ cask "qlimagesize"
 cask "qlmarkdown"
 # QuickLook for plaintext files
 cask "qlstephen"
+# Secure Chat
+cask "signal"
 cask "sketch"
 cask "slack"
 cask "spotify"
