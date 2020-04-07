@@ -53,8 +53,10 @@ create_symlinks() {
 }
 
 oh_my_zsh() {
-  ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+  logger "Installing Oh My ZSH"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  logger "Adding REAL config file"
+  ln -fs ~/dotfiles/zsh/zshrc ~/.zshrc
 }
 
 install_mac_packages() {
