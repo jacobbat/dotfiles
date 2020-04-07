@@ -57,7 +57,8 @@ oh_my_zsh() {
   ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
   wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/install.sh
   chmod 755 /tmp/install.sh
-  RUNZSH='no' /tmp/install.sh --keep-zshrc
+  /tmp/install.sh --unattended
+  chsh -s /usr/local/bin/zsh
 }
 
 install_mac_packages() {
