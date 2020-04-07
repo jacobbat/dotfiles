@@ -60,7 +60,7 @@ install_mac_packages() {
   brew analytics off
   ln -s ~/dotfiles/Brewfile ~/Brewfile
   logger "Installing brew packages..."
-  brew bundle
+  brew bundle --file ~/Brewfile
 }
 
 install_linux_packages(){
