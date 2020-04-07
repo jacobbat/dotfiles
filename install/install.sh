@@ -52,6 +52,10 @@ create_symlinks() {
   ln -s ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
 }
 
+oh_my_zsh() {
+  ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+}
+
 install_mac_packages() {
   if [ ! -n "$(command -v fzf)" ]  ; then
     logger "Installing Homebrew..."
@@ -135,3 +139,4 @@ set_os_vars
 create_symlinks
 install_packages
 add_aliases
+oh_my_zsh
