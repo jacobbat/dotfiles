@@ -59,6 +59,11 @@ oh_my_zsh() {
   chmod 755 /tmp/install.sh
   /tmp/install.sh --unattended
   logger "NOT changing the default shell to zsh..if desired: chsh -s /usr/local/bin/zsh"
+  logger "Cloning poerlevel10k"
+  git clone -depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+  logger "Installing p10k configuration"
+  ln -s ~/dotfiles/zsh/p10k.zsh ~/.p10k.zsh
+  logger "Run p10k configure to re-configure powerlevel"
 }
 
 install_mac_packages() {

@@ -9,4 +9,5 @@ pandoc
 bash
 bash-completion
 curl
+stress
 yamllint
