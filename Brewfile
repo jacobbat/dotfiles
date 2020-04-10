@@ -42,6 +42,8 @@ brew "wget"
 brew "yamllint"
 brew "youtube-dl"
 brew "zsh"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
 
 # Apps
 # Great USB Imager
