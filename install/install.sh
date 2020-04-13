@@ -41,13 +41,15 @@ logger() {
 
 create_symlinks() {
   logger "Setting shortcuts for dotfiles"
+  mkdir -p ~/.config/yamllint
+  mkdir -p ~/.newsboat
+  mkdir -p ~/.vagrant.d
   ln -s ~/dotfiles/gitconfig ~/.gitconfig
   ln -s ~/dotfiles/vim/vimrc ~/.vimrc
   ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-  mkdir -p ~/.config/yamllint
-  mkdir -p ~/.newsboat
   ln -s ~/dotfiles/newsboat/config ~/.newsboat/config
   ln -s ~/dotfiles/newsboat/urls ~/.newsboat/urls
+  ln -s ~/dotfiles/vagrant/plugins.json ~/.vagrant.d/plugins.json
   ln -s ~/dotfiles/vim/linters/flake8 ~/.config/flake8
   ln -s ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
 }
