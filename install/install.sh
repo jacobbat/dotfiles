@@ -65,11 +65,7 @@ oh_my_zsh() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
   logger "Installing p10k configuration"
   ln -s ~/dotfiles/zsh/p10k.zsh ~/.p10k.zsh
-  logger "Installing Awesome Fonts..."
-  cd ~/Library/Fonts && { curl -O 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf' ; cd -; }
-  cd ~/Library/Fonts && { curl -O 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf' ; cd -; }
-  cd ~/Library/Fonts && { curl -O 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf' ; cd -; }
-  cd ~/Library/Fonts && { curl -O 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf' ; cd -; }
+  logger "Don't need to explicitly download fonts..just make sure to be using iterm2"
   logger "Run p10k configure to re-configure powerlevel"
 }
 

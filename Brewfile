@@ -107,6 +107,7 @@ cask "the-unarchiver"
 cask "transmission"
 # VPN GUI for OpenVPN
 cask "tunnelblick"
+cask "vagrant"
 cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
