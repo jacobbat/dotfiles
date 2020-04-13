@@ -8,6 +8,8 @@ tap "homebrew/services"
 brew "asciiquarium"
 brew "bash"
 brew "bash-completion@2"
+# Best cat/more/less formatter
+brew "bat"
 brew "cmatrix"
 brew "curl"
 #brew "dnsmasq", restart_service: true
@@ -67,7 +69,7 @@ cask "google-cloud-sdk"
 cask "imagealpha"
 cask "imageoptim"
 cask "istat-menus"
-cask "iterm"
+cask "iterm2"
 # Great copy and paste management tool
 cask "jumpcut"
 cask "keybase"
