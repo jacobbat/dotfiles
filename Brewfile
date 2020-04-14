@@ -73,6 +73,8 @@ cask "iterm2"
 # Great copy and paste management tool
 cask "jumpcut"
 cask "keybase"
+# https://github.com/lensapp/lens
+cask "lens"
 # Animated Screen Capture
 cask "licecap"
 # Graphical Diff

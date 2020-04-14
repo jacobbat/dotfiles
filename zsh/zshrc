@@ -149,6 +149,7 @@ alias spotlightload='sudo launchctl load -w \
 	 /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
 
 alias g='git'
+alias k='kubectl'
 
 # fshow - git commit browser
 fshow() {
