@@ -72,7 +72,31 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws common-aliases docker fzf gcloud git gitfast git-extras git-remote-branch history oc osx kubectl kube-ps1 terraform tmux vagrant)
+plugins=(
+  aws 
+  common-aliases 
+  colorize
+  docker 
+  fzf 
+  gcloud 
+  git 
+  gitfast 
+  git-extras 
+  git-remote-branch 
+  history 
+  iterm2
+  jira
+  oc 
+  osx 
+  pip
+  python
+  kubectl 
+  kube-ps1 
+  terraform 
+  tmux 
+  vagrant
+  vscode
+)
 
 
 # User configuration
@@ -98,19 +122,8 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#JAVA_VERSION=1.8.0_101
-JAVA_VERSION=jdk-13.0.1
-# Java 1.7 for compling ClickFox
 export JAVA_HOME=/usr/local/opt/openjdk
-PATH=~/bin:/usr/local/opt/openjdk/jre/bin:$PATH:/usr/local/bin:/sw/bin:/Users/chirsch/src/android/android-sdk-mac_x86/platform-tools:/usr/local/git/bin:~/src/pebble-dev/PebbleSDK-3.1/bin
+PATH=~/bin:/usr/local/opt/openjdk/jre/bin:$PATH:/usr/local/bin:/sw/bin:/Users/chirsch/src/android/android-sdk-mac_x86/platform-tools:/usr/local/git/bin
 
 # For mongodb
 PATH=$PATH:/Users/chirsch/src/mongodb/mongodb-osx-x86_64-2.2.0/bin
@@ -129,27 +142,10 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # For packer
 export PATH=~/Downloads/packer:$PATH
+
+# For Go
 export GOPATH="/Users/chirsch/src/go/"
 export GOROOT=/usr/local/opt/go/libexec
-
-# For Docker
-#$(boot2docker shellinite
-# No longer needed do to docker for osx
-#eval $(docker-machine env default)
-
-
-# Start/Stop indexing on all volumes
-alias spotlightoff='sudo mdutil -a -i off'
-alias spotlighton='sudo mdutil -a -i on'
-
-# load/unload indexing on all volumes
-alias spotlightunload='sudo launchctl unload -w \
-	 /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
-alias spotlightload='sudo launchctl load -w \
-	 /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
-
-alias g='git'
-alias k='kubectl'
 
 # fshow - git commit browser
 fshow() {
@@ -162,10 +158,38 @@ fshow() {
                 {}
 FZF-EOF"
 }
-alias glog=fshow
-alias tp='terraform plan'
-alias ta='terraform apply'
+
+# From Ben
+# Quickly work with DDC environments
+ddc() {
+  echo "entering $1"
+  cd ~/src/$DDC_SITE/docker/ddc-$1/
+  eval "$(<env.sh)"
+  cd -
+}
+
+alias d="docker"
+alias g='git'
+alias k="kubectl"
+alias t="docker inspect -f '{{.Status.ContainerStatus.ContainerID}}' "
 alias rs='rsync -av --progress'
+alias ta='terraform apply'
+alias tp='terraform plan'
+alias hackthegibson="docker ps -f name='^ucp-'"
+alias scripts="cd /Users/chirsch/src/$DDC_SITE/des/des-scripts/scripts"
+alias cssh="i2cssh"
+alias glog=fshow
+
+
+# Start/Stop indexing on all volumes
+alias spotlightoff='sudo mdutil -a -i off'
+alias spotlighton='sudo mdutil -a -i on'
+
+# load/unload indexing on all volumes
+alias spotlightunload='sudo launchctl unload -w \
+	 /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
+alias spotlightload='sudo launchctl load -w \
+	 /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
 
 #alias vi='/usr/local/bin/vim'
 # To get ctrl-r history search
@@ -173,6 +197,9 @@ bindkey "^R" history-incremental-search-backward
 
 # use esc-v to edit the vim command line IN vim
 bindkey -M vicmd v edit-command-line
+
+# For SSH tunneling
+alias tunnel="sshuttle --dns -r $USER@$JUMPHOST 0/0"
 
 # https://hub.github.com/
 # Makes git github compatible
