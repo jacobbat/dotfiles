@@ -109,8 +109,8 @@ source $ZSH/oh-my-zsh.sh
 #JAVA_VERSION=1.8.0_101
 JAVA_VERSION=jdk-13.0.1
 # Java 1.7 for compling ClickFox
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/$JAVA_VERSION.jdk/Contents/Home
-PATH=~/bin:/Library/Java/JavaVirtualMachines/$JAVA_VERSION.jdk/Contents/Home/jre/bin:$PATH:/usr/local/bin:/sw/bin:/Users/chirsch/src/android/android-sdk-mac_x86/platform-tools:/usr/local/git/bin:~/src/pebble-dev/PebbleSDK-3.1/bin
+export JAVA_HOME=/usr/local/opt/openjdk
+PATH=~/bin:/usr/local/opt/openjdk/jre/bin:$PATH:/usr/local/bin:/sw/bin:/Users/chirsch/src/android/android-sdk-mac_x86/platform-tools:/usr/local/git/bin:~/src/pebble-dev/PebbleSDK-3.1/bin
 
 # For mongodb
 PATH=$PATH:/Users/chirsch/src/mongodb/mongodb-osx-x86_64-2.2.0/bin
