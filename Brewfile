@@ -24,6 +24,7 @@ brew "kubernetes-cli"
 brew "kubectx"
 # See K8S resources in realtime 
 brew "kubespy"
+brew "maven"
 brew "minikube"
 brew "newsboat"
 brew "pandoc"
