@@ -100,7 +100,6 @@ plugins=(
 
 
 # User configuration
-
 export PATH="/usr/local/bin:/opt/local/sbin:/Users/chirsch/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:~/src/go/bin:/usr/local/bin:/sw/bin:/Users/chirsch/src/android/android-sdk-mac_x86/platform-tools:/usr/local/git/bin:/Users/chirsch/src/pebble-dev/PebbleSDK-3.1/bin:/Users/chirsch/src/mongodb/mongodb-osx-x86_64-2.2.0/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -227,7 +226,9 @@ alias cat="bat"
 export GPG_TTY=$(tty)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
- 
+
+# Source the local site file to setup vars depending on which computer/customer/environment we're in
+[ -f ~/.site ] && source ~/.site
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

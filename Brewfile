@@ -84,6 +84,8 @@ cask "meld"
 cask "namechanger"
 # VPN Provider
 cask "mullvadvpn"
+# Opensource Broadcast Software
+cask "obs"
 # Podcatcher
 cask "pocket-casts"
 # Graphical REST Tool
