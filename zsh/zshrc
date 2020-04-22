@@ -158,6 +158,19 @@ fshow() {
 FZF-EOF"
 }
 
+function kube-toggle() {
+  if (( ${+POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND} )); then
+    unset POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND
+  else
+    POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito'
+  fi
+  p10k reload
+  if zle; then
+    zle push-input
+    zle accept-line
+  fi
+}
+
 # From Ben
 # Quickly work with DDC environments
 ddc() {
@@ -169,15 +182,28 @@ ddc() {
 
 alias d="docker"
 alias g='git'
+# https://hub.github.com/
+# Makes git github compatible
+alias h=hub
 alias k="kubectl"
+alias ke='kubectl get events --sort-by="{.lastTimestamp}"'
+alias ks="kubens"
+alias kx="kubectx"
 alias t="docker inspect -f '{{.Status.ContainerStatus.ContainerID}}' "
+alias ga="git add -p"
 alias rs='rsync -av --progress'
 alias ta='terraform apply'
 alias tp='terraform plan'
-alias hackthegibson="docker ps -f name='^ucp-'"
-alias scripts="cd /Users/chirsch/src/$DDC_SITE/des/des-scripts/scripts"
+alias cat="bat"
 alias cssh="i2cssh"
 alias glog=fshow
+#alias htop=glances
+alias hackthegibson="docker ps -f name='^ucp-'"
+# Show wide view of PS
+alias psw="ps -eafwww"
+alias scripts="cd /Users/chirsch/src/$DDC_SITE/des/des-scripts/scripts"
+# For SSH tunneling
+alias tunnel="sshuttle --dns -r $USER@$JUMPHOST 0/0"
 
 
 # Start/Stop indexing on all volumes
@@ -197,14 +223,8 @@ bindkey "^R" history-incremental-search-backward
 # use esc-v to edit the vim command line IN vim
 bindkey -M vicmd v edit-command-line
 
-# For SSH tunneling
-alias tunnel="sshuttle --dns -r $USER@$JUMPHOST 0/0"
 
-# https://hub.github.com/
-# Makes git github compatible
-alias h=hub
 
-#alias htop=glances
 
 #alias jobs='print "Remember %n to fg!\n";jobs'
 
@@ -216,16 +236,14 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-alias cssh=i2cssh
-
-alias kc=kubectl
-alias ga="git add -p"
-alias cat="bat"
 
 # Needed so that pgp prompt doesn't try for GUI
 export GPG_TTY=$(tty)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Source the aliases file
+[ -f ~/.aliases ] && source ~/.aliases
 
 # Source the local site file to setup vars depending on which computer/customer/environment we're in
 [ -f ~/.site ] && source ~/.site
