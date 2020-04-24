@@ -21,8 +21,9 @@ https://wallethacks.com/blog/feed/ "~Wallet Hacks" blog
 
 # Science
         http://localhost:0003 "~# Science"
-https://phys.org/rss-feed/ "~Phys Org" news
-https://www.popsci.com/arcio/rss/ "~Pop Sci" news
+https://phys.org/rss-feed/ "~Phys Org" science
+https://www.popsci.com/arcio/rss/ "~Pop Sci" science
+http://rss.sciam.com/ScientificAmerican-Global "~Scientific American" science
 
 # Misc
         http://localhost:0004 "~# Misc"
