@@ -4,6 +4,8 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "atombender/ktail"
+# https://github.com/puppetlabs/homebrew-puppet
+tap "puppetlabs/puppet"
 
 # Binaries
 brew "asciiquarium"
@@ -91,6 +93,10 @@ cask "namechanger"
 cask "mullvadvpn"
 # Opensource Broadcast Software
 cask "obs"
+# Puppet Development Kit
+# https://github.com/puppetlabs/pdk
+cask "pdk"
+cask "plex"
 # Podcatcher
 cask "pocket-casts"
 # Graphical REST Tool
