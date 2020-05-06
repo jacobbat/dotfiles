@@ -3,6 +3,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "atombender/ktail"
 
 # Binaries
 brew "asciiquarium"
@@ -20,6 +21,8 @@ brew "git"
 # Similar to htop but more details
 brew "glances"
 brew "htop"
+# https://github.com/atombender/ktail
+brew "ktail" 
 brew "kubernetes-cli"
 brew "kubectx"
 # See K8S resources in realtime 
@@ -33,6 +36,8 @@ brew "rename"
 brew "speedtest-cli"
 # Great tool to simulate loads 
 brew "stress"
+# For tunneling via SSH
+brew "sshuttle"
 brew "tfenv"
 brew "the_silver_searcher"
 brew "tmux"
@@ -84,6 +89,8 @@ cask "meld"
 cask "namechanger"
 # VPN Provider
 cask "mullvadvpn"
+# Opensource Broadcast Software
+cask "obs"
 # Podcatcher
 cask "pocket-casts"
 # Graphical REST Tool
