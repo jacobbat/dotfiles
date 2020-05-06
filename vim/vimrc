@@ -30,8 +30,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " GoLang developme
 call plug#end()
 
 
-" Powerline setup
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
@@ -50,8 +48,8 @@ filetype off
 " Golang setup
 let g:go_fmt_command = "goimports"
 
-Plug 'flazz/vim-colorschemes'
-Plug 'vim-syntastic/syntastic'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'vim-syntastic/syntastic'
 "Plug 'ludovicchabant/vim-gutentags'       " Tag generation
 "Plug 'neoclide/coc.nvim', {'branch':'release'}
 "Plug 'neoclide/coc-python'
