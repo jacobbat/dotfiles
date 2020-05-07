@@ -146,7 +146,7 @@ let g:lightline = {
 \ },
 \ }
 
-set background=dark
+set background=light
 colors PaperColor
 
 " -----------
