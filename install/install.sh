@@ -44,6 +44,7 @@ create_symlinks() {
   ln -s ~/dotfiles/gitconfig ~/.gitconfig
   ln -s ~/dotfiles/vim/vimrc ~/.vimrc
   ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+  ln -s ~/dotfiles/.bash_profile ${bash_profile_file}
   mkdir -p ~/.config/yamllint
   mkdir -p ~/.newsboat
   ln -s ~/dotfiles/newsboat/config ~/.newsboat/config
@@ -63,6 +64,7 @@ install_mac_packages() {
   ln -s ~/dotfiles/Brewfile ~/Brewfile
   logger "Installing brew packages..."
   brew bundle
+  $(brew --prefix)/opt/fzf/install
 }
 
 install_linux_packages(){
@@ -94,8 +96,6 @@ install_packages() {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
-  source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
-  echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
 }
 
 install_linux_dekstop_packages() {
@@ -119,21 +119,6 @@ ask() {
   done
 }
 
-
-add_aliases() {
-  if ! grep -q -E '^alias ll=.*$' ${alias_file}; then
-      logger "Adding ll alias..."
-      echo "# List all files colorized in long format" >> ${alias_file}
-      echo 'alias ll="ls -lah"' >> ${alias_file}
-  fi
-
-  if ! grep -q -E '^set -o vi$' ${bash_profile_file}; then
-      logger "Setting VI bindings in bash..."
-      echo 'set -o vi' >> ${bash_profile_file}
-  fi
-}
-
 set_os_vars
 create_symlinks
 install_packages
-add_aliases
