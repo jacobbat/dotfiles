@@ -1,3 +1,7 @@
+# Get running service from docker swarm
+alias dsps="docker service ps $1  --filter desired-state=running"
+
+
 # From https://github.com/techgirlgeek/mac_profile/blob/master/zsh_custom/aliases.zsh
 #
 #

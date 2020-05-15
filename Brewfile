@@ -22,6 +22,7 @@ brew "fzf"
 brew "git"
 # Similar to htop but more details
 brew "glances"
+brew "helm"
 brew "htop"
 # https://github.com/atombender/ktail
 brew "ktail" 
@@ -93,8 +94,10 @@ cask "namechanger"
 cask "mullvadvpn"
 # Opensource Broadcast Software
 cask "obs"
-# Puppet Development Kit
 # https://github.com/puppetlabs/pdk
+# Puppet Client Tools
+cask "pe-client-tools"
+# Puppet Development Kit
 cask "pdk"
 cask "plex"
 # Podcatcher
