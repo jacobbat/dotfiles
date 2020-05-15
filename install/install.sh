@@ -148,8 +148,13 @@ add_aliases() {
   fi
 }
 
+kubernetes() {
+  ../kubernetes/install.sh
+}
+
 set_os_vars
 create_symlinks
 install_packages
 add_aliases
 oh_my_zsh
+kubernetes

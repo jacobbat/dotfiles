@@ -6,6 +6,7 @@ tap "homebrew/services"
 tap "atombender/ktail"
 # https://github.com/puppetlabs/homebrew-puppet
 tap "puppetlabs/puppet"
+tap "int128/kubelogin"
 
 # Binaries
 brew "asciiquarium"
@@ -23,11 +24,13 @@ brew "git"
 # Similar to htop but more details
 brew "glances"
 brew "helm"
+brew "helmfile"
 brew "htop"
 # https://github.com/atombender/ktail
 brew "ktail" 
 brew "kubernetes-cli"
 brew "kubectx"
+brew "kubelogin"
 # See K8S resources in realtime 
 brew "kubespy"
 brew "maven"
@@ -100,6 +103,8 @@ cask "pe-client-tools"
 # Puppet Development Kit
 cask "pdk"
 cask "plex"
+# Music player for Plex
+cask "plexamp"
 # Podcatcher
 cask "pocket-casts"
 # Graphical REST Tool
