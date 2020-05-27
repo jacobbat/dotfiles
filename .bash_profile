@@ -71,7 +71,7 @@ function set_bash_prompt {
   # timestamp
   PS1="$COLOR_BLUE\t"
   # path
-  PS1+=" $COLOR_YELLOW\w"
+  PS1+=" $COLOR_RED\w"
   PS1+="$(current_virtualenv)"
   # git branch/status
   PS1+=" $(colored_git_branch)"
