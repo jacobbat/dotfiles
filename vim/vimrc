@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
 " Make SURE we're using /usr/local/bin/vim (brew installed and not OSX /usr/bin/vim
 " Or hangups will happen
 Plug 'flazz/vim-colorschemes'       " Colors
+Plug 'ervandew/supertab'                                      " To make YCM and ultisnips play nice
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }       " Auto-complete
 Plug 'rking/ag.vim'                                           " Great Search (from Jacob shift-K)
 Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " Great looking bottom of vi
@@ -38,6 +39,16 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 set laststatus=2
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 """"NEED TO SEE IF THESE SHOULD BE BROUGHT BACK IN"""""
 function! _blockcomment()
