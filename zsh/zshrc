@@ -82,7 +82,6 @@ plugins=(
   git 
   gitfast 
   git-extras 
-  git-remote-branch 
   history 
   iterm2
   jira
