@@ -93,6 +93,7 @@ cask "licecap"
 cask "meld"
 # Rename a list of files quickly
 cask "namechanger"
+cask "makemkv"
 # VPN Provider
 cask "mullvadvpn"
 # Opensource Broadcast Software
