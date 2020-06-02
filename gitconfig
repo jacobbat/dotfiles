@@ -37,4 +37,6 @@
 [credential]
 	helper = cache --timeout 2592000
 [pull]
-	rebase = true
+	#rebase = true
+[diff "sopsdiffer"]
+	textconv = sops -d
