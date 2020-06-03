@@ -24,6 +24,7 @@ brew "newsboat"
 brew "asciiquarium"
 brew "telnet"
 brew "w3m"
+brew "gpg"
 cask keepass
 cask virtualbox
 cask vagrant
