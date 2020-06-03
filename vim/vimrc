@@ -1,6 +1,6 @@
 set nocompatible                " This must be first, because it changes other options as a side effect
 filetype off
-syntax on
+syntax on " Enable Sytax highlighting
 filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
@@ -24,43 +24,58 @@ endif
 " -----------
 " Options
 " -----------
+set updatetime=300              " You will have bad experience for diagnostic messages when it's default 4000.
+set viewoptions=folds,options,cursor,unix,slash
+" -------------------
+" Indentation Options
+" -------------------
 set tabstop=2                   " Show existing tab with 2 spaces
+set smarttab                    " Inserts tabs on the start of a line according to shiftwidth
 set shiftwidth=2      		      " When indenting with '>' use 2 spaces
 set softtabstop=2               " number of spaces in tab when editing
 set expandtab                   " On pressing tab insert 2 spaces
-set updatetime=300              " You will have bad experience for diagnostic messages when it's default 4000.
-set viewoptions=folds,options,cursor,unix,slash
 set autoindent                  " set auto-indenting on for programming
 set autoread                    " auto reload files in the buffer
-set noswapfile                  " get rid of swap
-set showmatch                   " automatically show matching brackets
-set showcmd                     " show command in bottom bar
+" -------------------
+" Search Options
+" -------------------
+set hlsearch                      " highlight matches
+set incsearch                     " search as characters are entered
+set ignorecase                    " ignore case while searching
+set smartcase                     " combined with 'ignorecase' search is only case sensitive when an upprercase letter is used
+" -------------------
+" User Interface Options
+" -------------------
+set splitbelow                  " new horizontal split pane to the bottom
+set splitright                  " new vertical split pane to the right
+set number                      " show line numbers
 set cursorline                  " highlight current line
 set ruler                       " show the cursor position all the time
+set wildmenu                    " visual autocomplete for command menu
+set laststatus=2                " Show status line
+set noerrorbells                " Disable beep on errors
+set showmode                    " show the current mode
+set showmatch                   " automatically show matching brackets
+set wildmenu                    " Display all matching files when we tab complete
+set background=light            " Use colours that work well on a dark background (Console is usually black)
+colors PaperColor
+set t_Co=256                    " tell the term has 256 colors
 set mouse=a                     " Enable mouse usage
 set ttymouse=xterm2             " mouse codes from iTem that Vim will recognize
 set guioptions+=a               " autoselect in gui mode
+set showcmd                     " show command in bottom bar
+" -------------------
+" Miscellaneous Options
+" -------------------
+set noswapfile                  " get rid of swap
 set backspace=indent,eol,start  " make that backspace key work the way it should
-set showmode                    " show the current mode
-set number                      " show line numbers
 set history=1000                " store lots of :cmdline history
-set hlsearch                    " highlight matches
-set incsearch                   " search as characters are entered
-set ignorecase                  " ignore case while searching
-set smartcase                   " combined with 'ignorecase' search is only case sensitive when an upprercase letter is used
-set wildmenu                    " visual autocomplete for command menu
-set splitbelow                  " new horizontal split pane to the bottom
-set splitright                  " new vertical split pane to the right
-set t_Co=256                    " tell the term has 256 colors
-set background=light            " Use colours that work well on a dark background (Console is usually black)
+set path+=**                      " Search down into subfolders
+set hidden                        " Retain history when switching buffers
+set rtp+=/usr/local/opt/fzf       " Enable fzf
+set rtp+=~/.fzf                   " Enable fzf on Linux
 set timeoutlen=1000 ttimeoutlen=0 " Eliminate ESC delay - timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
-set laststatus=2                 " Show status line
-set clipboard=unnamed            " Use clipboard register for everything except delete
-set path+=**                     " Search down into subfolders
-set wildmenu                     " Display all matching files when we tab complete
-set hidden                       " Retain history when switching buffers
-set rtp+=/usr/local/opt/fzf      " Enable fzf
-set rtp+=~/.fzf                  " Enable fzf on Linux
+set clipboard=unnamed             " Use clipboard register for everything except delete
 
 " Leader is now space, using that for shortcuts
 let mapleader = ' '
@@ -146,8 +161,6 @@ let g:lightline = {
 \ },
 \ }
 
-set background=light
-colors PaperColor
 
 " -----------
 " Functions
