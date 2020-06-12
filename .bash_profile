@@ -10,6 +10,10 @@ fi
 
 export GPG_TTY=$(tty)  # Needed for GPG key signing
 
+# Enable bash completion
+# Bash completion files for each app resides here: /usr/local/etc/bash_completion.d/
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
 alias ll="ls -lah"
 export CLICOLOR=1
 
