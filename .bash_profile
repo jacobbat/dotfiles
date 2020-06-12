@@ -3,6 +3,11 @@ set -o vi # Vim like navigation in command line
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash # Enable fzf in commandline
 
+# Start tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
 export GPG_TTY=$(tty)  # Needed for GPG key signing
 
 alias ll="ls -lah"
@@ -86,8 +91,8 @@ function set_bash_prompt {
   # git branch/status
   PS1+=" $(colored_git_branch)"
   PS1+="\n"
-  PS1+="⚛️"
-  PS1+=" $COLOR_RESET "
+  PS1+="💠"
+  PS1+="$COLOR_RESET "
 }
 
 PROMPT_COMMAND=set_bash_prompt
