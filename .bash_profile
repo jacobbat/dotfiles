@@ -5,7 +5,7 @@ set -o vi # Vim like navigation in command line
 
 # Start tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+  exec tmux new-session -A -s main
 fi
 
 export GPG_TTY=$(tty)  # Needed for GPG key signing
