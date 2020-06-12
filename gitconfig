@@ -1,5 +1,5 @@
 [include]
-  path = ~/.gitconfig.user
+  path = ~/.gitconfig_user
 
 [alias]
   # Show verbose output about tags, branches or remotes
