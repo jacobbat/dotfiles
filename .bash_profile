@@ -95,4 +95,4 @@ function set_bash_prompt {
   PS1+="$COLOR_RESET "
 }
 
-PROMPT_COMMAND=set_bash_prompt
+PROMPT_COMMAND="set_bash_prompt; $PROMPT_COMMAND"
