@@ -1,6 +1,18 @@
-set -o vi
+### Misc ###
+set -o vi # Vim like navigation in command line
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash # Enable fzf in commandline
+
+export GPG_TTY=$(tty)  # Needed for GPG key signing
+
 alias ll="ls -lah"
 export CLICOLOR=1
+
+shopt -s cdspell      # autocorrect typos in path names when using `cd`
+shopt -s checkwinsize # rezize the windows-size if needed
+# Do not autocomplete when accidentally pressing Tab on an empty line. (It takes
+# forever and yields "Display all 15 gazillion possibilites?")
+shopt -s no_empty_cmd_completion;
 
 ### 1337 PS1 PROMPT ###
 COLOR_CYAN="\[\033[0;36m\]"
@@ -29,21 +41,19 @@ function git_status_color {
 }
 
 ### HISTORY ###
-# no duplicate entries
-export HISTCONTROL=ignoredups:erasedups
-# big big history
-export HISTSIZE=100000
+
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000
-# Don't record some commands
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
-# Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-# Useful timestamp format
-export HISTTIMEFORMAT='%F %T '
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear" # Don't record some commands
 # append to history, don't overwrite it
 shopt -s histappend
 # Save multi-line commands as one command
 shopt -s cmdhist
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Useful timestamp format
+export HISTTIMEFORMAT='%F %T '
 
 function colored_git_branch {
   local git_status="$(git status 2> /dev/null)"
@@ -76,7 +86,8 @@ function set_bash_prompt {
   # git branch/status
   PS1+=" $(colored_git_branch)"
   PS1+="\n"
-  PS1+="❄️ $COLOR_RESET "
+  PS1+="⚛️"
+  PS1+=" $COLOR_RESET "
 }
 
 PROMPT_COMMAND=set_bash_prompt
