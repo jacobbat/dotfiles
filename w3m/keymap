@@ -240,6 +240,6 @@ keymap t TAB_GOTO
 keymap T TAB_MENU
 
 ########## quit ##########
-keymap :q QUIT 
+keymap SPCq QUIT 
 keymap ZZ QUIT
 keymap ZQ EXIT
