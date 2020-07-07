@@ -8,6 +8,7 @@ Plug 'flazz/vim-colorschemes'       " Colors
 Plug 'junegunn/fzf.vim'             " Fzf vim wrapper
 Plug 'w0rp/ale'                     " Linting
 Plug 'itchyny/lightline.vim'        " Lightweight status line
+Plug 'benmills/vimux'
 call plug#end() " Initialize plugin system
 
 " If using tmux and iTerm2 on OSX, the following changes the cursor from a block to a cursor
@@ -109,8 +110,14 @@ nmap <Leader>x :x<CR>  " Write Quit
 nmap <Leader>t :term bash<CR>
 
 nmap <CR> o<Esc>       " Open lines, but stay in normal mode
+" ALE go to next word wrap
 nmap <Leader>j :ALENextWrap<CR>
+" ALE go to previous word wrap
 nmap <Leader>k :ALEPreviousWrap<CR>
+" Vimux send command to tmux pane
+nmap <Leader>vp :VimuxPromptCommand<CR>
+" Vimux send last command to tmux pane
+nmap <Leader>vl :VimuxRunLastCommand<CR>
 
 " Use different key mappings for easy navigation between splits to save a keystroke. Instead of ctrl-w then j, just ctrl-j "
 nnoremap <silent> <C-h> :call TmuxMove('h')<cr>
