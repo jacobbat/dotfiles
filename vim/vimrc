@@ -113,10 +113,10 @@ nmap <Leader>j :ALENextWrap<CR>
 nmap <Leader>k :ALEPreviousWrap<CR>
 
 " Use different key mappings for easy navigation between splits to save a keystroke. Instead of ctrl-w then j, just ctrl-j "
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <silent> <C-h> :call TmuxMove('h')<cr>
+nnoremap <silent> <C-j> :call TmuxMove('j')<cr>
+nnoremap <silent> <C-k> :call TmuxMove('k')<cr>
+nnoremap <silent> <C-l> :call TmuxMove('l')<cr>
 
 " Left mouse click enters insert mode instead of visual
 " map <LeftMouse> <LeftMouse>i
@@ -165,6 +165,14 @@ let g:lightline = {
 " -----------
 " Functions
 " -----------
+function! TmuxMove(direction)
+  let wnr = winnr()
+  silent! execute 'wincmd ' . a:direction
+  " If the winnr is still the same after we moved, it is the last pane
+  if wnr == winnr()
+          call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
+  end
+endfunction
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
