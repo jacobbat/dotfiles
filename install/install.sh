@@ -47,6 +47,7 @@ create_symlinks() {
   ln -s ~/dotfiles/.bash_profile ${bash_profile_file}
   mkdir -p ~/.config/yamllint
   mkdir -p ~/.newsboat
+  mkdir -p ~/.w3m
   ln -s ~/dotfiles/newsboat/config ~/.newsboat/config
   ln -s ~/dotfiles/newsboat/urls ~/.newsboat/urls
   ln -s ~/dotfiles/w3m/config ~/.w3m/config
