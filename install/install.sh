@@ -68,6 +68,13 @@ install_mac_packages() {
   $(brew --prefix)/opt/fzf/install
 }
 
+configure_docker() {
+  # Create docker machine
+  docker-machine create --driver virtualbox default
+  docker-machine env default
+  eval $(docker-machine env default)
+}
+
 install_linux_packages(){
   logger "Installing core linux packages..."
   < ~/dotfiles/linux_packages xargs sudo ${pkg_mgr} install -y
