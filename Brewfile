@@ -25,6 +25,10 @@ brew "asciiquarium"
 brew "telnet"
 brew "w3m"
 brew "gpg"
+brew "docker"
+brew "docker-machine"
+brew "docker-compose-completion"
+brew "npm
 cask keepass
 cask virtualbox
 cask vagrant
