@@ -28,11 +28,14 @@ alias morpa_rvm='rvm use ruby-2.3.3'
 
 # K8s aliases
 alias k='kubectl'
+alias ka="kubectl apply -f $1"
+alias kd="kubectl delete -f $1"
+alias ke='kubectl get events --sort-by={.lastTimestamp}'
+alias kg='kubectl get'
 alias kns='kubens'
 alias knx='kubectx'
 alias kpon='kubeon'
 alias kpoff='kubeoff'
-alias ke='k get events --sort-by={.lastTimestamp}'
 alias kpodw='k get pods -o wide'
 alias kpod='k get pods'
 

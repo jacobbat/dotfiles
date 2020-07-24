@@ -1,3 +1,8 @@
 ke='k get events --sort-by={.lastTimestamp}'
 
 KUBECONFIG=~/.kube/config:~/.kube/kube_config_rancher-kiatek-internal-cluster.yml kubectl config view --flatten ~/.kube/config.new
+
+jf='journalctl -flu $1'
+
+gdiff='git log -p'
+
