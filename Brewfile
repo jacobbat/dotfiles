@@ -30,6 +30,7 @@ brew "glances"
 brew "helm"
 brew "helmfile"
 brew "htop"
+brew "jq"
 # https://github.com/atombender/ktail
 brew "ktail" 
 brew "k9s" 
