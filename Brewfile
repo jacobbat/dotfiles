@@ -8,6 +8,7 @@ tap "atombender/ktail"
 tap "puppetlabs/puppet"
 tap "int128/kubelogin"
 tap "derailed/k9s"
+tap "goodwithtech/dockle"
 
 # Binaries
 brew "ansible"
@@ -20,6 +21,10 @@ brew "bat"
 brew "cmatrix"
 brew "curl"
 #brew "dnsmasq", restart_service: true
+# https://github.com/goodwithtech/dockle
+brew "dockle"
+# Practice your coding via exercism.io
+brew "exercism"
 brew "findutils"
 brew "flake8"
 brew "fzf"
@@ -43,6 +48,7 @@ brew "minikube"
 brew "newsboat"
 brew "pandoc"
 brew "packer"
+brew "pdf2svg"
 brew "python"
 brew "rename"
 # https://github.com/mozilla/sops manages secrets for helmfile
@@ -88,6 +94,7 @@ cask "google-chrome"
 cask "google-cloud-sdk"
 cask "imagealpha"
 cask "imageoptim"
+cask "inkscape"
 cask "istat-menus"
 cask "iterm2"
 # Great copy and paste management tool

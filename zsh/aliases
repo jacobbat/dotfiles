@@ -1,3 +1,5 @@
-ke='k get events --sort-by={.lastTimestamp}'
+alias ke='k get events --sort-by={.lastTimestamp}'
 
-KUBECONFIG=~/.kube/config:~/.kube/kube_config_rancher-kiatek-internal-cluster.yml kubectl config view --flatten ~/.kube/config.new
+#KUBECONFIG=~/.kube/config:~/.kube/kube_config_rancher-kiatek-internal-cluster.yml kubectl config view --flatten ~/.kube/config.new
+
+alias brewinstall="brew bundle --file ~/Brewfile"

@@ -181,6 +181,8 @@ ddc() {
 }
 
 alias d="docker"
+# Docker Linter https://github.com/goodwithtech/dockle
+alias dl="dockle"
 alias g='git'
 # https://hub.github.com/
 # Makes git github compatible
