@@ -1,7 +1,9 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "heroku/brew"
 brew "python"
+brew "go"
 brew "bash"
 brew "bash-completion@2"
 brew "fzf"
@@ -28,9 +30,19 @@ brew "gpg"
 brew "docker"
 brew "docker-machine"
 brew "docker-compose-completion"
-brew "npm
-cask keepass
-cask virtualbox
-cask vagrant
-cask keybase
-cask gimp
+brew "jq"
+# Guild tools
+brew "npm"
+brew "circleci"
+brew "postgresql"
+brew "heroku"
+#############
+cask "keepass"
+cask "virtualbox"
+cask "vagrant"
+cask "keybasexc"
+cask "gimp"
+cask "nordvpn"
+cask "visual-studio-code"
+cask "firefox"
+cask "skype"
