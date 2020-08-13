@@ -9,7 +9,8 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 export GPG_TTY=$(tty)  # Needed for GPG key signing
-
+# AWS CLI bash completion
+complete -C '/usr/local/bin/aws_completer' aws
 # Enable bash completion
 # Bash completion files for each app resides here: /usr/local/etc/bash_completion.d/
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
