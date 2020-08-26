@@ -1,4 +1,6 @@
 alias ke='k get events --sort-by={.lastTimestamp}'
+alias kt='ktail -n'
+alias tff='terraform fmt --recursive --diff'
 
 #KUBECONFIG=~/.kube/config:~/.kube/kube_config_rancher-kiatek-internal-cluster.yml kubectl config view --flatten ~/.kube/config.new
 
