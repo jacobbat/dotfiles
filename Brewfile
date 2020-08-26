@@ -9,6 +9,7 @@ tap "puppetlabs/puppet"
 tap "int128/kubelogin"
 tap "derailed/k9s"
 tap "goodwithtech/dockle"
+tap "chef/chef/inspec"
 
 # Binaries
 brew "ansible"
@@ -27,6 +28,7 @@ brew "dockle"
 brew "exercism"
 brew "findutils"
 brew "flake8"
+brew "fluxctl"
 brew "fzf"
 brew "git"
 brew "gnu-getopt"
@@ -81,6 +83,7 @@ brew "zsh-syntax-highlighting"
 # Great USB Imager
 cask "balenaetcher"
 cask "caffeine"
+cask "chef/chef/inspec"
 # Ebook Organizer
 cask "calibre"
 cask "cyberduck"
