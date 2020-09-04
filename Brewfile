@@ -9,7 +9,7 @@ tap "puppetlabs/puppet"
 tap "int128/kubelogin"
 tap "derailed/k9s"
 tap "goodwithtech/dockle"
-tap "chef/chef/inspec"
+tap "chef/chef"
 
 # Binaries
 brew "ansible"
@@ -82,6 +82,7 @@ brew "zsh-syntax-highlighting"
 # Apps
 # Great USB Imager
 cask "balenaetcher"
+# Don't let the mac fall asleep (clickable)
 cask "caffeine"
 cask "chef/chef/inspec"
 # Ebook Organizer
@@ -99,15 +100,16 @@ cask "fork"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-cloud-sdk"
-cask "imagealpha"
-cask "imageoptim"
+#cask "imagealpha"
+#cask "imageoptim"
 cask "inkscape"
 cask "istat-menus"
 cask "iterm2"
 # Great copy and paste management tool
 cask "jumpcut"
+# The best encrypted chat
 cask "keybase"
-# https://github.com/lensapp/lens
+# K8S GUI https://github.com/lensapp/lens
 cask "lens"
 # Animated Screen Capture
 cask "licecap"
@@ -115,7 +117,7 @@ cask "licecap"
 cask "meld"
 # Rename a list of files quickly
 cask "namechanger"
-cask "makemkv"
+#cask "makemkv"
 # VPN Provider
 cask "mullvadvpn"
 # Opensource Broadcast Software
@@ -135,33 +137,26 @@ cask "postman"
 cask "powershell"
 # SMS across devices
 cask "pulse-sms"
-# QuickLook ColorCode for Finder
-cask "qlcolorcode"
-# QuickLook Image Size for Finder
-cask "qlimagesize"
-# QuickLook for Markdown files
-cask "qlmarkdown"
-# QuickLook for plaintext files
-cask "qlstephen"
+# Replaced spectacle
+cask "rectangle"
 # Secure Chat
 cask "signal"
-cask "sketch"
-cask "slack"
-cask "spectacle"
 cask "spotify"
-#cask "steam"
 cask "the-unarchiver"
+cask "thunderbird"
 cask "transmission"
 # VPN GUI for OpenVPN
 cask "tunnelblick"
 cask "vagrant"
 cask "virtualbox"
-cask "vscodium"
+# Open source version of Visual Studio Code
+#cask "vscodium"
+cask "visual-studio-code"
 cask "vlc"
 cask "xscreensaver"
 
-
-
-
+# Need to write a commercial/closed source/optional Brewfile?
+# Great Design tool
+cask "sketch"
 
 # https://github.com/kylegordy/Brewfile/blob/master/Brewfile
