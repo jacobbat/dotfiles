@@ -44,38 +44,62 @@ create_symlinks() {
   mkdir -p ~/.config/yamllint
   mkdir -p ~/.newsboat
   mkdir -p ~/.vagrant.d
-  ln -s ~/dotfiles/gitconfig ~/.gitconfig
-  ln -s ~/dotfiles/vim/vimrc ~/.vimrc
-  ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-  ln -s ~/dotfiles/newsboat/config ~/.newsboat/config
-  ln -s ~/dotfiles/newsboat/urls ~/.newsboat/urls
-  ln -s ~/dotfiles/vagrant/plugins.json ~/.vagrant.d/plugins.json
-  ln -s ~/dotfiles/vim/linters/flake8 ~/.config/flake8
-  ln -s ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
+  ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
+  ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
+  ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+  ln -sf ~/dotfiles/newsboat/config ~/.newsboat/config
+  ln -sf ~/dotfiles/newsboat/urls ~/.newsboat/urls
+  ln -sf ~/dotfiles/vagrant/plugins.json ~/.vagrant.d/plugins.json
+  ln -sf ~/dotfiles/vim/linters/flake8 ~/.config/flake8
+  ln -sf ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
 }
 
 oh_my_zsh() {
-  logger "Installing Oh My ZSH"
-  ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
-  wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/install.sh
-  chmod 755 /tmp/install.sh
-  /tmp/install.sh --unattended
+  set -e
+  logger "Oh My ZSH"
+  if [ ! -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
+    logger "Installing Oh My ZSH...no dir found ~/.oh-my-zsh"
+    wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/install.sh
+    chmod 755 /tmp/install.sh
+    /tmp/install.sh --unattended
+  else
+    logger "Oh My ZSH already installed at ~/.oh-my-zsh"
+  fi
+
+  if [ -L ~/.zshrc ]; then
+    logger "Oh My ZSH config already linked at ~/.zshrc"
+  else
+    ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
+  fi
   logger "NOT changing the default shell to zsh..if desired: chsh -s /usr/local/bin/zsh"
-  logger "Cloning poerlevel10k"
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-  logger "Installing p10k configuration"
-  ln -s ~/dotfiles/zsh/p10k.zsh ~/.p10k.zsh
+
+  if [ -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]; then
+    logger "p10k already downloaded"
+  else
+    logger "Cloning powerlevel10k"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+    logger "Don't worry we will throw away the results of the p10k configure"
+    p10k configure
+  fi
+
+  if [ -L ~/.p10k.zsh ]; then
+    logger "Found existing symlink for ~/.p10k.zsh"
+  else
+    logger "Installing p10k configuration"
+    ln -sf ~/dotfiles/zsh/p10k.zsh ~/.p10k.zsh
+  fi
   logger "Don't need to explicitly download fonts..just make sure to be using iterm2"
   logger "Run p10k configure to re-configure powerlevel"
+  set +e
 }
 
 install_mac_packages() {
   if [ ! -n "$(command -v fzf)" ]  ; then
     logger "Installing Homebrew..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
   brew analytics off
-  ln -s ~/dotfiles/Brewfile ~/Brewfile
+  ln -sf ~/dotfiles/Brewfile ~/Brewfile
   logger "Installing brew packages..."
   brew bundle --file ~/Brewfile
 }
