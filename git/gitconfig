@@ -41,6 +41,9 @@
 	editor = vim
 	pager = bat
 
+	#Enable parallel index preload for operations like git diff
+	preloadindex = true
+
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
   remote = origin
@@ -50,16 +53,27 @@
 	#helper = /opt/boxen/bin/boxen-git-credential
 [user]
 	name = Chris Hirsch
-	email = chris@base2technology.com
 	signingkey = 4996D596224B4221
+
 [log]
-        decorate = auto
+	# Show branch names with git log
+	decorate = short
         stat = auto
 
 [credential]
 	helper = cache --timeout 2592000
+
+[push]
+	# When pushing code, always push only your current branch to a branch of the same name
+	default=current
+
 [pull]
-	#rebase = true
+	rebase = false
+
+[fetch]
+	# Remove any local branched that were deleted upstream
+	#prune = true
+
 [diff "sopsdiffer"]
 	textconv = sops -d
 [alias]
@@ -84,5 +98,9 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	template = /Users/chirsch/.stCommitMsg
+	template = ~/dotfiles/git/git_template
 	#gpgsign = true
+	#
+[protocol]
+	# Use Git Wire Protocol v2 when the server supports it. Wire Protocol v2 is faster and more efficient for fetch, especially on large repos like php:
+	version = 2
