@@ -8,12 +8,17 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux new-session -A -s main
 fi
 
+# Go environment
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
 export GPG_TTY=$(tty)  # Needed for GPG key signing
-# AWS CLI bash completion
-complete -C '/usr/local/bin/aws_completer' aws
 # Enable bash completion
 # Bash completion files for each app resides here: /usr/local/etc/bash_completion.d/
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+# AWS CLI bash completion
+complete -C '/usr/local/bin/aws_completer' aws
 
 alias ll="ls -lah"
 export CLICOLOR=1
@@ -65,6 +70,12 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Useful timestamp format
 export HISTTIMEFORMAT='%F %T '
 
+function aws_shell() {
+  . ~/venv/bin/activate
+  aws-jumpcloud exec $1 -- aws-shell
+  deactivate
+}
+
 function colored_git_branch {
   local git_status="$(git status 2> /dev/null)"
   local on_branch="On branch ([^${IFS}]*)"
@@ -85,6 +96,17 @@ function current_virtualenv {
   else
      echo " ${COLOR_GREEN}(🐉 `basename $VIRTUAL_ENV`)";
   fi
+}
+
+# Switch kubectl configuration to AWS EKS clusters
+function kc {
+  ENV=$1
+  CLUSTER=$2
+  if [ -z "$CLUSTER" ]
+  then
+    CLUSTER=guild-eks-cluster-$ENV
+  fi
+  aws eks --region us-west-2  update-kubeconfig --name "$CLUSTER" --profile "guild-$ENV"
 }
 
 function set_bash_prompt {
