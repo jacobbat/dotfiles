@@ -36,6 +36,7 @@ brew "npm"
 brew "circleci"
 brew "postgresql"
 brew "heroku"
+brew "cfn-lint"
 #############
 cask "keepass"
 cask "virtualbox"
