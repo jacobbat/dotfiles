@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'             " Fzf vim wrapper
 Plug 'w0rp/ale'                     " Linting
 Plug 'itchyny/lightline.vim'        " Lightweight status line
 Plug 'benmills/vimux'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 call plug#end() " Initialize plugin system
 
 " If using tmux and iTerm2 on OSX, the following changes the cursor from a block to a cursor
