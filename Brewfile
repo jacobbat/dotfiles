@@ -24,6 +24,7 @@ brew "curl"
 #brew "dnsmasq", restart_service: true
 # https://github.com/goodwithtech/dockle
 brew "dockle"
+brew "docker-compose"
 # Practice your coding via exercism.io
 brew "exercism"
 brew "findutils"
@@ -49,6 +50,9 @@ brew "kubespy"
 brew "maven"
 brew "minikube"
 brew "newsboat"
+# https://github.com/vmware-tanzu/octant
+# Shows how applications run on k8s
+brew "octant"
 brew "pandoc"
 brew "packer"
 brew "pdf2svg"
