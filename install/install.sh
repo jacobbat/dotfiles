@@ -126,6 +126,7 @@ install_packages() {
     install_mac_packages
   elif [ ${machine} == 'Linux' ] ; then
     install_linux_packages
+    install_mac_packages
   fi
 
   if [ ! -f ~/.vim/autoload/plug.vim ] ; then

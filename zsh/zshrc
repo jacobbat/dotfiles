@@ -143,7 +143,7 @@ export PATH=~/Downloads/packer:$PATH
 
 # For Go
 export GOPATH="$HOME/src/go/"
-export GOROOT=/usr/local/opt/go/libexec
+#export GOROOT=/usr/local/opt/go/libexec
 
 # fshow - git commit browser
 fshow() {
@@ -196,6 +196,7 @@ alias rs='rsync -av --progress'
 alias ta='terraform apply'
 alias tp='terraform plan'
 alias cat="bat"
+alias bat="batcat"
 alias cssh="i2cssh"
 alias glog=fshow
 #alias htop=glances
