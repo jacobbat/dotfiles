@@ -52,6 +52,7 @@ create_symlinks() {
   ln -sf ~/dotfiles/vagrant/plugins.json ~/.vagrant.d/plugins.json
   ln -sf ~/dotfiles/vim/linters/flake8 ~/.config/flake8
   ln -sf ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
+  ln -sf ~/dotfiles/zsh/aliases ~/.config/aliases
 }
 
 oh_my_zsh() {
