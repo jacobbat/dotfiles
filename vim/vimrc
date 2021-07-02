@@ -8,8 +8,9 @@ Plug 'flazz/vim-colorschemes'       " Colors
 Plug 'junegunn/fzf.vim'             " Fzf vim wrapper
 Plug 'w0rp/ale'                     " Linting
 Plug 'itchyny/lightline.vim'        " Lightweight status line
-Plug 'benmills/vimux'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'tpope/vim-commentary'         " Easier way to comment out code
+Plug 'ycm-core/YouCompleteMe'
 call plug#end() " Initialize plugin system
 
 " If using tmux and iTerm2 on OSX, the following changes the cursor from a block to a cursor
@@ -59,13 +60,14 @@ set vb t_vb=                    " Disable beep on errors
 set showmode                    " show the current mode
 set showmatch                   " automatically show matching brackets
 set wildmenu                    " Display all matching files when we tab complete
-set background=light            " Use colours that work well on a dark background (Console is usually black)
+set background=dark             " Use colours that work well on a dark background (Console is usually black)
 colors PaperColor
 set t_Co=256                    " tell the term has 256 colors
 set mouse=a                     " Enable mouse usage
 set ttymouse=xterm2             " mouse codes from iTem that Vim will recognize
 set guioptions+=a               " autoselect in gui mode
 set showcmd                     " show command in bottom bar
+set foldmethod=syntax           " set folding based on syntax
 " -------------------
 " Miscellaneous Options
 " -------------------
@@ -74,10 +76,14 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 set history=1000                " store lots of :cmdline history
 set path+=**                      " Search down into subfolders
 set hidden                        " Retain history when switching buffers
-set rtp+=/usr/local/opt/fzf       " Enable fzf
-set rtp+=~/.fzf                   " Enable fzf on Linux
 set timeoutlen=1000 ttimeoutlen=0 " Eliminate ESC delay - timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
 set clipboard=unnamed             " Use clipboard register for everything except delete
+" ----------
+"  fzf config
+" ----------
+set rtp+=/usr/local/opt/fzf       " Enable fzf
+set rtp+=~/.fzf                   " Enable fzf on Linux
+let g:fzf_layout = { 'down': '30%' }
 
 " Leader is now space, using that for shortcuts
 let mapleader = ' '
@@ -85,17 +91,22 @@ let mapleader = ' '
 " -----------
 " Mappings
 " -----------
-nmap <Leader>f :GFiles<CR> " Fzf files tracked by Git
-nmap <Leader>F :Files<CR> " Fzf files in path
-nmap <Leader>b :Buffers<CR> " Fzf buffers
+" Fzf files tracked by Git
+nmap <Leader>f :GFiles<CR>
+" Fzf files in path
+nmap <Leader>F :Files<CR>
+" Fzf buffers
+nmap <Leader>b :Buffers<CR>
+" TODO: Command history can be searched, but they're not executing
+" Fzf vim command history
+nmap <Leader>: :History:<CR>
+" Fzf open file history
+nmap <Leader>h :History<CR>
+nmap <Leader>M :Maps<CR>      " Fzf browse shortcut mappings
 nmap <Leader>a :ALEToggleBuffer<CR>  " Toggles lint/syntax
 nmap <Leader>c :setlocal list!<CR>:setlocal list?<CR> " Toggle displaying all characters:
 nmap <Leader>s :setlocal invspell<CR> " Toggle spellcheck
 nmap <Leader>z z= " Show suggestions for mispelled word
-" TODO: Command history can be searched, but they're not executing
-nmap <Leader>: :History:<CR>  " Fzf vim command history
-nmap <Leader>h :History<CR>   " Fzf open file history
-nmap <Leader>M :Maps<CR>      " Fzf browse shortcut mappings
 nmap <Leader>' :Marks<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
 " Search all files in path for string
@@ -137,14 +148,40 @@ inoremap <S-Tab> <C-d> " Shift-Tab shift current line left 2 spaces in insert mo
 " -----
 " ALE
 " -----
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
+let g:ale_echo_msg_format = '[%linter%] %severity%: %s'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 augroup VimDiff
   autocmd!
   autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
 augroup END
+
+" -----------
+"  Python
+" -----------
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd BufRead *.py set nocindent
+autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+au BufNewFile,BufRead *.py set foldmethod=indent
+
+" --------
+"  vim-go
+" --------
+let g:go_doc_popup_window = 1
+
+" Go syntax highlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
+" Status line types/signatures
+let g:go_auto_type_info = 0
+" Autocomplete prompt whenever you press the dot (.), 
+" au filetype go inoremap <buffer> . .<C-x><C-o>
 
 " Lightline
 let g:lightline = {
