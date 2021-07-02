@@ -1,3 +1,4 @@
+tap "aws/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
@@ -19,7 +20,7 @@ brew "unrar"
 brew "vim"
 brew "watch"
 brew "wget"
-brew "speedtest"
+brew "speedtest-cli"
 brew "findutils"
 brew "rename"
 brew "newsboat"
@@ -30,13 +31,16 @@ brew "gpg"
 brew "docker"
 brew "docker-machine"
 brew "docker-compose-completion"
+brew "dive" # Pretty good tool for exploring containers
+brew "k9s" # Visual k8 explorer
 brew "jq"
 # Guild tools
-brew "npm"
 brew "circleci"
 brew "postgresql"
 brew "heroku"
 brew "cfn-lint"
+#############
+# Casks
 #############
 cask "keepass"
 cask "virtualbox"
@@ -46,4 +50,3 @@ cask "gimp"
 cask "nordvpn"
 cask "visual-studio-code"
 cask "firefox"
-cask "skype"
