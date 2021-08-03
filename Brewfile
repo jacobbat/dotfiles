@@ -16,7 +16,6 @@ brew "yamllint"
 brew "flake8"
 brew "tmux"
 brew "tree"
-brew "unrar"
 brew "vim"
 brew "watch"
 brew "wget"
@@ -34,19 +33,20 @@ brew "docker-compose-completion"
 brew "dive" # Pretty good tool for exploring containers
 brew "k9s" # Visual k8 explorer
 brew "jq"
-# Guild tools
-brew "circleci"
-brew "postgresql"
-brew "heroku"
 brew "cfn-lint"
+################
+# Needed for YCM
+################
+brew "cmake"
+brew "mono"
+brew "nodejs"
 #############
 # Casks
 #############
-cask "keepass"
+cask "keepassxc"
 cask "virtualbox"
 cask "vagrant"
-cask "keybasexc"
+cask "keybase"
 cask "gimp"
 cask "nordvpn"
 cask "visual-studio-code"
-cask "firefox"

@@ -35,7 +35,7 @@ logger() {
     MESSAGE=$1
     CONTEXT_LINE=$(echo "$CONTEXT" | awk '{print $1}')
     CONTEXT_FILE=$(echo "$CONTEXT" | awk -F"/" '{print $NF}')
-    printf "%s %05s %s %s\n" "$DATE_TIME" "[$CONTEXT_LINE" "$CONTEXT_FILE]" "$MESSAGE"
+    printf "%s %05s %s %s\n" "$DATE_TIME" " [$CONTEXT_LINE" "$CONTEXT_FILE]" "$MESSAGE"
     CONTEXT=
 }
 
@@ -65,7 +65,26 @@ install_mac_packages() {
   ln -s ~/dotfiles/Brewfile ~/Brewfile
   logger "Installing brew packages..."
   brew bundle
+  logger "Configuring fzf..."
   $(brew --prefix)/opt/fzf/install
+  configure_bash
+}
+
+configure_bash() {
+  # Configure MacOS shell to use bash 5
+  BASH_PREFIX=$(brew --prefix bash)
+  EXIT_CODE=$?
+  test $EXIT_CODE -eq 1 && logger "ERROR: Failed to set bash as default shell, bash is not installed by HomeBrew" && return 1 || logger "Configuring default bash..."
+  BASH_PATH="$BASH_PREFIX/bin/bash"
+  CURRENT_SHELL_PATH=$(dscl . -read /Users/$USER UserShell | cut -d" " -f 2)
+  if [ $BASH_PATH == $CURRENT_SHELL_PATH ] ; then
+    logger "BASH already configured..." 
+    return 0
+  fi
+  # Add bash path to /etc/shells
+  grep -xqF "$BASH_PATH" /etc/shells || sudo echo "$BASH_PATH" >> /etc/shells
+  # Change the default bash to the latest
+  chsh -s "$BASH_PATH" $USER
 }
 
 configure_docker() {
