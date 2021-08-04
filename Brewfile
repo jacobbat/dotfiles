@@ -10,10 +10,13 @@ tap "int128/kubelogin"
 tap "derailed/k9s"
 tap "goodwithtech/dockle"
 tap "chef/chef"
+tap "benwebber/tunnelblickctl"
 
 # Binaries
 brew "ansible"
 brew "ansible-lint"
+# Removes everything on uninstall of an app
+brew "apptrap"
 brew "asciiquarium"
 brew "bash"
 brew "bash-completion@2"
@@ -48,6 +51,7 @@ brew "kubelogin"
 # See K8S resources in realtime 
 brew "kubespy"
 brew "maven"
+cask "make"
 brew "minikube"
 brew "newsboat"
 # https://github.com/vmware-tanzu/octant
@@ -103,6 +107,8 @@ cask "firefox"
 cask "flux"
 # Excellent Git GUI
 cask "fork"
+# Golang linter
+cask "golangci-lint"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-cloud-sdk"
@@ -121,9 +127,10 @@ cask "lens"
 cask "licecap"
 # Graphical Diff
 cask "meld"
+# Autodesk meshmixer used to separate polygons for multicolor MMU prints
+cask "meshmixer"
 # Rename a list of files quickly
 cask "namechanger"
-#cask "makemkv"
 # VPN Provider
 cask "mullvadvpn"
 # Opensource Broadcast Software
@@ -153,6 +160,7 @@ cask "thunderbird"
 cask "transmission"
 # VPN GUI for OpenVPN
 cask "tunnelblick"
+cask "tunnelblickctl"
 cask "vagrant"
 cask "virtualbox"
 # Open source version of Visual Studio Code
