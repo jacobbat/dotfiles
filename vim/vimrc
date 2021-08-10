@@ -148,6 +148,7 @@ inoremap <S-Tab> <C-d> " Shift-Tab shift current line left 2 spaces in insert mo
 " -----
 " ALE
 " -----
+let g:ale_linters = {'cloudformation':['cfn-lint']}
 let g:ale_echo_msg_format = '[%linter%] %severity%: %s'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
