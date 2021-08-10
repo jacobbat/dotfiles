@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-tap "heroku/brew"
 brew "python"                         # Python tooling
 brew "go"                             # Golang tooling
 brew "bash"                           # Latest version of bash
@@ -18,6 +17,7 @@ brew "mas"                            # Mac App Store CLI
 brew "watch"                          # Runs command repeatedly
 brew "speedtest-cli"                  # CLI to run a speedtest
 brew "findutils"                      # Use GNU find
+brew "gnu-sed"                        # GNU sed
 brew "rename"                         # Renames files according to modifiactions rules
 brew "newsboat"                       # Console RSS reader
 brew "asciiquarium"                   # Terminal aquarium bliss
