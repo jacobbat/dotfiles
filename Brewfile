@@ -35,6 +35,9 @@ brew "yamllint"                       # Yaml linter
 brew "flake8"                         # Python linter
 tap "aws/tap"
 brew "aws-sam-cli"                    # AWS SAM CLI
+tap "amazon/amazon"
+brew "awscli"                         # AWS CLI
+brew "aws-shell"                      # Wrap aws-cli with autocomplete
 ################
 # Needed for YCM
 ################
