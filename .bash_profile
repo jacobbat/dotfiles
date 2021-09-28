@@ -13,14 +13,25 @@ export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+# Python environment
+eval "$(pyenv init --path)"
+
 export GPG_TTY=$(tty)  # Needed for GPG key signing
 # Enable bash completion
 # Bash completion files for each app resides here: /usr/local/etc/bash_completion.d/
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
 # AWS CLI bash completion
 complete -C '/usr/local/bin/aws_completer' aws
 
+# Kubectl autocompletion
+source <(kubectl completion bash)
+
+# Aliases
 alias ll="ls -lah"
+alias vpn-onetouch='~/.script/vpn-onetouch'
+alias vpn='/opt/cisco/anyconnect/bin/vpn'
+
 export CLICOLOR=1
 
 shopt -s cdspell      # autocorrect typos in path names when using `cd`
