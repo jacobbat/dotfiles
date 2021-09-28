@@ -6,6 +6,7 @@ brew "go"                             # Golang tooling
 brew "bash"                           # Latest version of bash
 brew "bash-completion@2"              # Bash completion
 brew "fzf"                            # General-purpose CLI fuzzy finder, used for searching bash history, file trees, vim, etc
+brew "ripgrep"                        # Search tool that recursively searches the current directory for a regex pattern
 brew "git"                            # Revision control system
 brew "htop"                           # Interactive process viewer
 brew "pandoc"                         # Document converter
@@ -26,18 +27,29 @@ brew "w3m"                            # Text based web browser
 brew "wget"                           # Retrieve web files
 brew "gpg"                            # Encrypt and sign communications
 brew "docker"                         # Container CLI tooling
-brew "docker-machine"                 # Run docker host in VirtualBox
 brew "dive"                           # Explore Docker containers file systems
 brew "k9s"                            # Visual k8 explorer
+brew "helm"                           # Package manager for Kubernetes
 brew "jq"                             # CLI JSON processor
 brew "cfn-lint"                       # Cloudformation linter
 brew "yamllint"                       # Yaml linter
-brew "flake8"                         # Python linter
+brew "flake8"                         # Python einter
+brew "expect"                         # Automate interactive applications from CLI
 tap "aws/tap"
 brew "aws-sam-cli"                    # AWS SAM CLI
 tap "amazon/amazon"
 brew "awscli"                         # AWS CLI
 brew "aws-shell"                      # Wrap aws-cli with autocomplete
+tap "weaveworks/tap"
+brew "weaveworks/tap/eksctl"          # CLI tool for creating and managing clusters on EKS
+brew "zlib"                           # Required by pyenv
+# Language installers
+brew "goenv"
+brew "nodenv"
+brew "pyenv"
+brew "pipenv"
+brew "tfenv"
+
 ################
 # Needed for YCM
 ################
@@ -51,6 +63,7 @@ cask "keepassxc"                      # Password manager
 cask "virtualbox"                     # Hypervisor
 cask "gimp"                           # Image editor
 cask "nordvpn"                        # Personal VPN
+cask "postman"                        # API Client
 cask "visual-studio-code"             # IDE
 cask "joplin"                         # Note taking app with markdown and vim support
 cask "alfred"                         # MacOS helper
