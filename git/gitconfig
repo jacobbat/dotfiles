@@ -5,6 +5,8 @@
   # Show verbose output about tags, branches or remotes
   tags = tag -l
   branches = branch -a
+  # git branchrename origin old_branch new_branch
+  branchrename = "!git branch -m $2 $3 && git push $1 :$2 $3 -u #"
   remotes = remote -v
   # Pretty log output
   tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
