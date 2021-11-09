@@ -1,15 +1,17 @@
 # Taps
+tap "atombender/ktail"
+tap "chef/chef"
+tap "derailed/k9s"
+tap "goodwithtech/dockle"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "atombender/ktail"
+tap "int128/kubelogin"
+# https://www.hashicorp.com/blog/announcing-hashicorp-homebrew-tap
+tap "hashicorp/tap"
 # https://github.com/puppetlabs/homebrew-puppet
 tap "puppetlabs/puppet"
-tap "int128/kubelogin"
-tap "derailed/k9s"
-tap "goodwithtech/dockle"
-tap "chef/chef"
 
 # Binaries
 brew "ansible"
@@ -21,6 +23,13 @@ brew "bash-completion@2"
 brew "bat"
 brew "cmatrix"
 brew "curl"
+# Commitizen tui for conventional commits https://github.com/commitizen/cz-cli
+# Probably prefer npm install -g commitizen because brew is very old 2.x vs 4.x
+brew "commitizen"
+brew "consul"
+brew "consul-template"
+# For things like realpath
+brew "coreutils"
 #brew "dnsmasq", restart_service: true
 # https://github.com/goodwithtech/dockle
 brew "dockle"
@@ -32,6 +41,7 @@ brew "flake8"
 brew "fluxctl"
 brew "fzf"
 brew "git"
+brew "git-lfs"
 brew "gnu-getopt"
 # Similar to htop but more details
 brew "glances"
@@ -39,6 +49,8 @@ brew "helm"
 brew "helmfile"
 brew "htop"
 brew "jq"
+# Artifactory CLI
+brew "jfrog-cli"
 # https://github.com/atombender/ktail
 brew "ktail" 
 brew "k9s" 
@@ -49,6 +61,8 @@ brew "kubelogin"
 brew "kubespy"
 brew "maven"
 brew "minikube"
+# Like Charlesproxy but opensource https://mitmproxy.org
+brew "mitmproxy"
 brew "newsboat"
 # https://github.com/vmware-tanzu/octant
 # Shows how applications run on k8s
@@ -59,6 +73,7 @@ brew "pdf2svg"
 brew "python"
 brew "pyenv-virtualenv"
 brew "rename"
+brew "rust"
 # https://github.com/mozilla/sops manages secrets for helmfile
 brew "sops"
 brew "speedtest-cli"
@@ -67,13 +82,17 @@ brew "sqlite"
 brew "sshuttle"
 # Great tool to simulate loads 
 brew "stress"
+brew "termshark"
 brew "tfenv"
 brew "the_silver_searcher"
 brew "tmux"
 brew "tree"
 brew "unrar"
 brew "unnethack"
+brew "wireshark"
 brew "vim"
+# Versatile HTTP load tester 
+brew "vegeta"
 brew "watch"
 brew "wget"
 brew "yamllint"
@@ -157,6 +176,8 @@ cask "virtualbox"
 #cask "vscodium"
 cask "visual-studio-code"
 cask "vlc"
+# This includes the GUI
+cask "wireshark"
 cask "xscreensaver"
 
 # Need to write a commercial/closed source/optional Brewfile?
