@@ -1,0 +1,30 @@
+Include ~/.ssh/config.user
+
+Host *
+    AddKeysToAgent yes
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    KeepAlive yes
+    ServerAliveInterval 120
+    ServerAliveCountMax 120
+# For the slow host lookups disables ipv6
+    AddressFamily inet
+    Tunnel yes
+
+Host *.amazonaws.com
+  # https://developer.rackspace.com/blog/speeding-up-ssh-session-creation/
+  ControlPath ~/.ssh/sockets/%h
+  ControlMaster auto
+  ControlPersist 600
+  User ec2-user
+
+Host *
+  # https://developer.rackspace.com/blog/speeding-up-ssh-session-creation/
+  # https://dammit.nl/ssh-unix-socket.html to fix the unix_listener too long for domain socket 
+  # Keep the %n so we can find the socket if we need to remove it (stale, etc)
+  #ControlPath ~/.ssh/sockets/%n%C
+  ControlPath ~/.ssh/sockets/%C
+  ControlMaster auto
+  ControlPersist 600
+
