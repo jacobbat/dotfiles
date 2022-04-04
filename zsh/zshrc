@@ -199,6 +199,7 @@ alias rs='rsync -av --progress'
 alias ta='terraform apply'
 alias tp='terraform plan'
 alias cat="bat"
+#alias bat="batcat"
 alias cssh="i2cssh"
 alias glog=fshow
 #alias htop=glances
@@ -246,7 +247,8 @@ export GPG_TTY=$(tty)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Source the aliases file
+# Source the dotconfig aliases file AND overwrite that with any local aliases
+[ -f ~/.config/aliases ] && source ~/.config/aliases
 [ -f ~/.aliases ] && source ~/.aliases
 
 # Source the local site file to setup vars depending on which computer/customer/environment we're in

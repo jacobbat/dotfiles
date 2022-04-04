@@ -12,10 +12,17 @@ tap "int128/kubelogin"
 tap "hashicorp/tap"
 # https://github.com/puppetlabs/homebrew-puppet
 tap "puppetlabs/puppet"
+tap "int128/kubelogin"
+tap "derailed/k9s"
+tap "goodwithtech/dockle"
+tap "chef/chef"
+tap "benwebber/tunnelblickctl"
 
 # Binaries
 brew "ansible"
 brew "ansible-lint"
+# Removes everything on uninstall of an app
+brew "apptrap"
 brew "asciiquarium"
 brew "bash"
 brew "bash-completion@2"
@@ -62,6 +69,7 @@ brew "kubelogin"
 # See K8S resources in realtime 
 brew "kubespy"
 brew "maven"
+cask "make"
 brew "minikube"
 # Like Charlesproxy but opensource https://mitmproxy.org
 brew "mitmproxy"
@@ -89,7 +97,8 @@ brew "tfenv"
 brew "the_silver_searcher"
 brew "tmux"
 brew "tree"
-brew "unrar"
+# License not opensource?
+#brew "unrar"
 brew "unnethack"
 brew "wireshark"
 brew "vim"
@@ -115,6 +124,7 @@ cask "calibre"
 cask "cyberduck"
 # Database GUI
 cask "dbeaver-community"
+cask "discord"
 cask "docker"
 cask "evernote"
 cask "firefox"
@@ -122,6 +132,8 @@ cask "firefox"
 cask "flux"
 # Excellent Git GUI
 cask "fork"
+# Golang linter
+cask "golangci-lint"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-cloud-sdk"
@@ -140,9 +152,10 @@ cask "lens"
 cask "licecap"
 # Graphical Diff
 cask "meld"
+# Autodesk meshmixer used to separate polygons for multicolor MMU prints
+cask "meshmixer"
 # Rename a list of files quickly
 cask "namechanger"
-#cask "makemkv"
 # VPN Provider
 cask "mullvadvpn"
 # Opensource Broadcast Software
@@ -172,6 +185,7 @@ cask "thunderbird"
 cask "transmission"
 # VPN GUI for OpenVPN
 cask "tunnelblick"
+cask "tunnelblickctl"
 cask "vagrant"
 cask "virtualbox"
 # Open source version of Visual Studio Code
