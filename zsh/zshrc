@@ -73,6 +73,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  ansible
   aws 
   common-aliases 
   colorize
@@ -86,7 +87,7 @@ plugins=(
   iterm2
   jira
   oc 
-  osx 
+  macos
   pip
   python
   kubectl 
@@ -99,7 +100,7 @@ plugins=(
 
 
 # User configuration
-export PATH="/usr/local/bin:/opt/local/sbin:$HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:~/src/go/bin:/usr/local/bin:/sw/bin:/usr/local/git/bin"
+export PATH="/usr/local/bin:/opt/local/sbin:$HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:~/src/go/bin:/usr/local/bin:/sw/bin:/usr/local/git/bin:/opt/puppetlabs/pdk/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -144,6 +145,8 @@ export PATH=~/Downloads/packer:$PATH
 # For Go
 export GOPATH="$HOME/src/go/"
 export GOROOT=/usr/local/opt/go/libexec
+export GOPRIVATE=github.csnzoo.com
+export PATH=$PATH:$GOPATH/bin
 
 # fshow - git commit browser
 fshow() {
@@ -249,6 +252,9 @@ export GPG_TTY=$(tty)
 # Source the local site file to setup vars depending on which computer/customer/environment we're in
 [ -f ~/.site ] && source ~/.site
 
+# Source the functions file (BASH/ZSH)
+[ -f ~/.functions ] && source ~/.functions
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -261,3 +267,5 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=~/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV=~/.pyenv/versions/3.7.3/bin/virtualenv
 
+
+# Need to install https://github.com/commitizen/cz-cli

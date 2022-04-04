@@ -4,6 +4,12 @@ alias dsps="docker service ps $1  --filter desired-state=running"
 # Allows k8s login via cli
 alias klogin="kubelogin"
 
+# Tui for conventional commits
+alias gc='git cz'
+
+# Interactive git add
+alias gi='git add -i'
+
 
 # From https://github.com/techgirlgeek/mac_profile/blob/master/zsh_custom/aliases.zsh
 #
@@ -53,4 +59,7 @@ alias myldap='ldapsearch -o ldif-wrap=no  -H ldaps://den3ha.adldap.davita.corp/ 
 #    ldapsearch -o ldif-wrap=no  -H ldaps://den3ha.adldap.davita.corp/ -b dc=davita,dc=corp -D kcassio@davita.corp -W "(samAccountName=$1)" memberof
 #}
 alias mytest="echo Make it say: $1"
+
+# Alias jql to a much better experience
+alias jql=jless
 

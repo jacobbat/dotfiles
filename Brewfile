@@ -49,6 +49,8 @@ brew "helm"
 brew "helmfile"
 brew "htop"
 brew "jq"
+# Interactive json cli too https://pauljuliusmartinez.github.io/?ref=console.dev
+brew "jless"
 # Artifactory CLI
 brew "jfrog-cli"
 # https://github.com/atombender/ktail

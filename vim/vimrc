@@ -10,6 +10,7 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 " Make SURE we're using /usr/local/bin/vim (brew installed and not OSX /usr/bin/vim
 " Or hangups will happen
+Plug 'anupdhml/ale', { 'branch': 'tremor' }
 Plug 'flazz/vim-colorschemes'       " Colors
 Plug 'ervandew/supertab'                                      " To make YCM and ultisnips play nice
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }       " Auto-complete
@@ -22,15 +23,38 @@ Plug 'w0rp/ale'                     " Linting
 Plug 'itchyny/lightline.vim'        " Lightweight status line
 Plug 'sirver/ultisnips'                                       " Code completion
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " GoLang development
+Plug 'wayfair-incubator/tremor-vim'                           " Tremor
+Plug 'tpope/vim-obsession'                                    " Vim Obsession for tmux/vim persistence
+Plug 'preservim/nerdtree'                                     " Nerdtree visual Filemanager
+
+"
 "Bundle "godlygeek/tabular"
 "" Nerdtree setup
 "Bundle 'scrooloose/nerdtree'
-"map <F2> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+"-----------
+" nerdtree 
+"-----------
+" NERDTree ignores
+let g:NERDTreeIgnore=['build$','tags']
+" NERDTree mappings
+map <silent> <LocalLeader>ne :call g:WorkaroundNERDTreeFind()<CR>
+function! g:WorkaroundNERDTreeFind()
+  try | NERDTreeFind | catch | silent! NERDTree | silent! NERDTreeFind | endtry
+endfunction
+"NERDTree Workaround - otherwise if you :bd the nt buffer it gets saddy
+map <silent> <LocalLeader>nt :call g:WorkaroundNERDTreeToggle()<CR>
+function! g:WorkaroundNERDTreeToggle()
+  try | NERDTreeToggle | catch | silent! NERDTree | endtry
+endfunction
+let g:NERDTreeWinSize=50
 
 " Initialize plugin system
 call plug#end()
 
-
+"----------
+" ui
+"----------
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
@@ -39,6 +63,8 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 set laststatus=2
+" When looking at whitespace via :set list make spaces show as .
+set listchars+=space:.
 
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -128,6 +154,7 @@ set noswapfile                  " get rid of swap
 set showmatch                   " automatically show matching brackets
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
+" https://github.com/tonyganga/dotfiles/blob/master/.vimrc
 set ruler                       " show the cursor position all the time
 set mouse=a                     " Enable mouse usage
 set ttymouse=xterm2             " mouse codes from iTem that Vim will recognize

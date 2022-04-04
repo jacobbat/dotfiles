@@ -18,6 +18,7 @@ set_os_vars() {
                   ;;
       Darwin*)    machine=Mac
                   alias_file=~/.aliases
+                  functions_file=~/.functions
                   bash_profile_file=~/.bash_profile
                   ;;
       CYGWIN*)    machine=Cygwin;;
@@ -46,12 +47,23 @@ create_symlinks() {
   mkdir -p ~/.vagrant.d
   ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
   ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
-  ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
   ln -sf ~/dotfiles/newsboat/config ~/.newsboat/config
   ln -sf ~/dotfiles/newsboat/urls ~/.newsboat/urls
   ln -sf ~/dotfiles/vagrant/plugins.json ~/.vagrant.d/plugins.json
   ln -sf ~/dotfiles/vim/linters/flake8 ~/.config/flake8
   ln -sf ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
+}
+
+tmux() {
+  logger "Setting up tmux"
+  logger "Need to restore iterm2 for osx??"
+  mkdir -p ~/.tmux/plugins
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+}
+ssh() {
+  ln -sf ~/dotfiles/ssh/config ~/.ssh/config
+  mkdir -p ~/.ssh/sockets
 }
 
 oh_my_zsh() {
@@ -177,8 +189,10 @@ kubernetes() {
 }
 
 set_os_vars
-create_symlinks
-install_packages
-add_aliases
-oh_my_zsh
-kubernetes
+#create_symlinks
+#install_packages
+#add_aliases
+#oh_my_zsh
+#ssh
+#kubernetes
+tmux
