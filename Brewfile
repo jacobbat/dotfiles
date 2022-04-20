@@ -2,7 +2,6 @@
 tap "atombender/ktail"
 tap "chef/chef"
 tap "derailed/k9s"
-tap "goodwithtech/dockle"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
@@ -14,15 +13,12 @@ tap "hashicorp/tap"
 tap "puppetlabs/puppet"
 tap "int128/kubelogin"
 tap "derailed/k9s"
-tap "goodwithtech/dockle"
 tap "chef/chef"
 tap "benwebber/tunnelblickctl"
 
 # Binaries
 brew "ansible"
 brew "ansible-lint"
-# Removes everything on uninstall of an app
-brew "apptrap"
 brew "asciiquarium"
 brew "bash"
 brew "bash-completion@2"
@@ -39,7 +35,10 @@ brew "consul-template"
 brew "coreutils"
 #brew "dnsmasq", restart_service: true
 # https://github.com/goodwithtech/dockle
-brew "dockle"
+# Contianer Image Linter
+brew "goodwithtech/r/dockle"
+# Golang linter
+brew "golangci-lint"
 brew "docker-compose"
 # Practice your coding via exercism.io
 brew "exercism"
@@ -69,7 +68,7 @@ brew "kubelogin"
 # See K8S resources in realtime 
 brew "kubespy"
 brew "maven"
-cask "make"
+brew "make"
 brew "minikube"
 # Like Charlesproxy but opensource https://mitmproxy.org
 brew "mitmproxy"
@@ -114,6 +113,8 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 # Apps
+# Removes everything on uninstall of an app
+cask "apptrap"
 # Great USB Imager
 cask "balenaetcher"
 # Don't let the mac fall asleep (clickable)
@@ -132,8 +133,6 @@ cask "firefox"
 cask "flux"
 # Excellent Git GUI
 cask "fork"
-# Golang linter
-cask "golangci-lint"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-cloud-sdk"
@@ -157,14 +156,14 @@ cask "meshmixer"
 # Rename a list of files quickly
 cask "namechanger"
 # VPN Provider
-cask "mullvadvpn"
+#cask "mullvadvpn"
 # Opensource Broadcast Software
 cask "obs"
 # https://github.com/puppetlabs/pdk
 # Puppet Client Tools
-cask "pe-client-tools"
+#cask "pe-client-tools"
 # Puppet Development Kit
-cask "pdk"
+#cask "pdk"
 cask "plex"
 # Music player for Plex
 cask "plexamp"
@@ -182,10 +181,10 @@ cask "signal"
 cask "spotify"
 cask "the-unarchiver"
 cask "thunderbird"
-cask "transmission"
+#cask "transmission"
 # VPN GUI for OpenVPN
-cask "tunnelblick"
-cask "tunnelblickctl"
+#cask "tunnelblick"
+#cask "tunnelblickctl"
 cask "vagrant"
 cask "virtualbox"
 # Open source version of Visual Studio Code
@@ -198,6 +197,6 @@ cask "xscreensaver"
 
 # Need to write a commercial/closed source/optional Brewfile?
 # Great Design tool
-cask "sketch"
+#cask "sketch"
 
 # https://github.com/kylegordy/Brewfile/blob/master/Brewfile
