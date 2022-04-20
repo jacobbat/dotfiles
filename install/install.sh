@@ -201,6 +201,9 @@ kubernetes() {
 git() {
   logger "Setting up git commitizen"
   npm install -g git-cz --force
+
+  logger "Updating meeting backgrounds submodule..."
+  git submodule update --init --recursive
 }
 
 set_os_vars
