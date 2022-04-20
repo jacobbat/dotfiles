@@ -18,6 +18,7 @@ set_os_vars() {
                   ;;
       Darwin*)    machine=Mac
                   alias_file=~/.aliases
+                  functions_file=~/.functions
                   bash_profile_file=~/.bash_profile
                   ;;
       CYGWIN*)    machine=Cygwin;;
@@ -46,13 +47,24 @@ create_symlinks() {
   mkdir -p ~/.vagrant.d
   ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
   ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
-  ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
   ln -sf ~/dotfiles/newsboat/config ~/.newsboat/config
   ln -sf ~/dotfiles/newsboat/urls ~/.newsboat/urls
   ln -sf ~/dotfiles/vagrant/plugins.json ~/.vagrant.d/plugins.json
   ln -sf ~/dotfiles/vim/linters/flake8 ~/.config/flake8
   ln -sf ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
   ln -sf ~/dotfiles/zsh/aliases ~/.config/aliases
+}
+
+tmux() {
+  logger "Setting up tmux"
+  logger "Need to restore iterm2 for osx??"
+  mkdir -p ~/.tmux/plugins
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+}
+ssh() {
+  ln -sf ~/dotfiles/ssh/config ~/.ssh/config
+  mkdir -p ~/.ssh/sockets
 }
 
 oh_my_zsh() {
@@ -95,6 +107,14 @@ oh_my_zsh() {
 }
 
 install_mac_packages() {
+
+  if [ ! -n "$(command -v gcc)" ]  ; then
+    logger "Installing OSX Dev Tools (including git)..."
+    softwareupdate --all --install --force
+  else
+    logger "OSX Dev Tools (including git) already installed..."
+  fi
+
   if [ ! -n "$(command -v fzf)" ]  ; then
     logger "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -178,9 +198,20 @@ kubernetes() {
   ../kubernetes/install.sh
 }
 
+git() {
+  logger "Setting up git commitizen"
+  npm install -g git-cz --force
+
+  logger "Updating meeting backgrounds submodule..."
+  git submodule update --init --recursive
+}
+
 set_os_vars
 create_symlinks
 install_packages
 add_aliases
 oh_my_zsh
+ssh
 kubernetes
+tmux
+git

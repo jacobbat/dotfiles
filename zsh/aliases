@@ -1,3 +1,5 @@
+# Alias gc to git TUI for conventional commits
+alias gc='git cz'
 alias ke='k get events --sort-by={.lastTimestamp}'
 alias kt='ktail -n'
 alias tff='terraform fmt --recursive --diff'
@@ -9,6 +11,23 @@ alias brewinstall="brew bundle --file ~/Brewfile"
 jf='journalctl -flu $1'
 
 gdiff='git log -p'
+
+gi() {
+    gcloud compute instances list --sort-by NAME --filter "$1" | grep -i running
+}
+
+gih(){
+    gcloud compute instances list --sort-by NAME --filter "$1" | grep -i running |  awk '{print $1}' | awk '{print $0".fullyqualifiedhostname.com"}'
+}
+
+# us dev
+# us prod
+set_project() {
+    gcloud config set project projectprefix-"$1"-lm-"$2"
+}
+
+# From https://obsproject.com/forum/threads/obs-virtual-cam-to-discord.133437/
+fix_obs_discord="sudo codesign --remove-signature /Applications/Discord.app/Contents/Frameworks/Discord\ Helper\ \(GPU\).app /Applications/Discord.app/Contents/Frameworks/Discord\ Helper\ \(Plugin\).app /Applications/Discord.app/Contents/Frameworks/Discord\ Helper\ \(Renderer\).app /Applications/Discord.app/Contents/Frameworks/Discord\ Helper.app"
 
 # Get running service from docker swarm
 alias dsps="docker service ps $1  --filter desired-state=running"

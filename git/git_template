@@ -11,10 +11,10 @@
 # 7. Use the body to explain what and why vs. how
 #
 # Reference: http://chris.beams.io/posts/git-commit/
-# ---------------------------------------------
+# ---------------------------------------------------------------------
 # Conventional Commits 
 #
-# fix/feat/test/refactor/docs/ci/perf<!>: <description>
+# fix/feat/test/refactor/docs/ci/chore/perf<!>: <description>
 # [optional body]
 # [optional footer(s)]
 # BREAKING CHANGE: (Also denoted by ! after type)
