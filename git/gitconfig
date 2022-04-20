@@ -1,0 +1,111 @@
+[include]
+  path = ~/.gitconfig.user
+
+[alias]
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  # git branchrename origin old_branch new_branch
+  branchrename = "!git branch -m $2 $3 && git push $1 :$2 $3 -u #"
+  remotes = remote -v
+  # Pretty log output
+  tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+  tree2 = log --all --graph --decorate --oneline --simplify-by-decoration
+  tree3 = log --all --graph --decorate --oneline
+  ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi" hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
+
+[hub]
+        protocol = https
+
+[color]
+  # Use colors in Git commands that are capable of colored output when outputting to the terminal
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[merge]
+        tool = meld
+
+[core]
+        #excludesfile = /opt/boxen/config/git/gitignore
+	excludesfile = /opt/boxen/config/git/gitignore
+	editor = vim
+	pager = bat
+
+	#Enable parallel index preload for operations like git diff
+	preloadindex = true
+
+# Use `origin` as the default remote on the `master` branch in all cases
+[branch "master"]
+  remote = origin
+  merge = refs/heads/master
+
+[credential]
+	#helper = /opt/boxen/bin/boxen-git-credential
+[user]
+	name = Chris Hirsch
+	signingkey = 4996D596224B4221
+	email = chris@base2technology.com
+
+[log]
+	# Show branch names with git log
+	decorate = short
+        stat = auto
+
+[credential]
+	helper = cache --timeout 2592000
+
+[push]
+	# When pushing code, always push only your current branch to a branch of the same name
+	default=current
+
+[pull]
+	rebase = false
+
+[fetch]
+	# Remove any local branched that were deleted upstream
+	#prune = true
+
+[diff "sopsdiffer"]
+	textconv = sops -d
+[alias]
+        # http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
+        lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+        lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+        lg = !"git lg1"
+        # From Mike D
+        tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+        tree2 = log --all --graph --decorate --oneline --simplify-by-decoration
+        tree3 = log --all --graph --decorate --oneline
+        ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = ~/dotfiles/git/git_template
+	#gpgsign = true
+	#
+[protocol]
+	# Use Git Wire Protocol v2 when the server supports it. Wire Protocol v2 is faster and more efficient for fetch, especially on large repos like php:
+	version = 2
+[init]
+	defaultBranch = main

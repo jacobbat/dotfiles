@@ -1,7 +1,6 @@
 " From http://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
 set nocompatible                " This must be first, because it changes other options as a side effect
 filetype off
-
 syntax on
 filetype plugin indent on
 
@@ -11,24 +10,51 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 " Make SURE we're using /usr/local/bin/vim (brew installed and not OSX /usr/bin/vim
 " Or hangups will happen
+Plug 'anupdhml/ale', { 'branch': 'tremor' }
+Plug 'flazz/vim-colorschemes'       " Colors
+Plug 'ervandew/supertab'                                      " To make YCM and ultisnips play nice
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }       " Auto-complete
 Plug 'rking/ag.vim'                                           " Great Search (from Jacob shift-K)
 Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " Great looking bottom of vi
 Plug 'tpope/vim-fugitive'                                     " Git integration
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fzf vim wrapper
+Plug 'w0rp/ale'                     " Linting
+Plug 'itchyny/lightline.vim'        " Lightweight status line
 Plug 'sirver/ultisnips'                                       " Code completion
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " GoLang development
+Plug 'wayfair-incubator/tremor-vim'                           " Tremor
+Plug 'tpope/vim-obsession'                                    " Vim Obsession for tmux/vim persistence
+Plug 'preservim/nerdtree'                                     " Nerdtree visual Filemanager
+
+"
 "Bundle "godlygeek/tabular"
 "" Nerdtree setup
 "Bundle 'scrooloose/nerdtree'
-"map <F2> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+"-----------
+" nerdtree 
+"-----------
+" NERDTree ignores
+let g:NERDTreeIgnore=['build$','tags']
+" NERDTree mappings
+map <silent> <LocalLeader>ne :call g:WorkaroundNERDTreeFind()<CR>
+function! g:WorkaroundNERDTreeFind()
+  try | NERDTreeFind | catch | silent! NERDTree | silent! NERDTreeFind | endtry
+endfunction
+"NERDTree Workaround - otherwise if you :bd the nt buffer it gets saddy
+map <silent> <LocalLeader>nt :call g:WorkaroundNERDTreeToggle()<CR>
+function! g:WorkaroundNERDTreeToggle()
+  try | NERDTreeToggle | catch | silent! NERDTree | endtry
+endfunction
+let g:NERDTreeWinSize=50
 
 " Initialize plugin system
 call plug#end()
 
-
-" Powerline setup
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"----------
+" ui
+"----------
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
@@ -37,6 +63,18 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 set laststatus=2
+" When looking at whitespace via :set list make spaces show as .
+set listchars+=space:.
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 """"NEED TO SEE IF THESE SHOULD BE BROUGHT BACK IN"""""
 function! _blockcomment()
@@ -44,10 +82,11 @@ function! _blockcomment()
 set nocompatible
 filetype off
 
+" Golang setup
+let g:go_fmt_command = "goimports"
 
-
-Plug 'flazz/vim-colorschemes'
-Plug 'vim-syntastic/syntastic'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'vim-syntastic/syntastic'
 "Plug 'ludovicchabant/vim-gutentags'       " Tag generation
 "Plug 'neoclide/coc.nvim', {'branch':'release'}
 "Plug 'neoclide/coc-python'
@@ -98,6 +137,9 @@ endif
 endfunction
 """"""""""""""""COMMENTED OUT ABOVE FOR NOW"""""""""""""""
 
+" -----------
+" Options
+" -----------
 """"JACOB ORIGINAL"""""
 function! _jacoboriginalcomment()
 set tabstop=2                   " Show existing tab with 2 spaces
@@ -112,6 +154,7 @@ set noswapfile                  " get rid of swap
 set showmatch                   " automatically show matching brackets
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
+" https://github.com/tonyganga/dotfiles/blob/master/.vimrc
 set ruler                       " show the cursor position all the time
 set mouse=a                     " Enable mouse usage
 set ttymouse=xterm2             " mouse codes from iTem that Vim will recognize
@@ -130,68 +173,46 @@ set splitright                  " new vertical split pane to the right
 set t_Co=256                    " tell the term has 256 colors
 set background=light            " Use colours that work well on a dark background (Console is usually black)
 set timeoutlen=1000 ttimeoutlen=0 " Eliminate ESC delay - timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
-"set paste                       " ***BREAKING TABS*** Turn off autoindent when pasting
-
-colors PaperColor
+set laststatus=2                 " Show status line
+set clipboard=unnamed            " Use clipboard register for everything except delete
+set path+=**                     " Search down into subfolders
+set wildmenu                     " Display all matching files when we tab complete
+set rtp+=/usr/local/opt/fzf      " Enable fzf
+set rtp+=~/.fzf                  " Enable fzf on Linux
 
 " Leader is now space, using that for shortcuts
-let mapleader = " "
+let mapleader = ' '
 
-" Use clipboard register for everything except  delete "
-set clipboard=unnamed
-
-" FINDING FILES
-" Search down into subfolders
-" Provides tab-completion for all file-related tasks
-set path+=**
-set wildmenu " Display all matching files when we tab complete
-
-" Fzf fuzzy finders
-set rtp+=/usr/local/opt/fzf " Enable fzf
-
-""""""""""""""
-" ************
+" -----------
 " Mappings
-" ************
-""""""""""""""
-" Open lines, but stay in normal mode
-nmap <S-CR> O<Esc>
-nmap <CR> o<Esc>
-nmap <Leader>f :GFiles<CR>
-nmap <Leader>F :Files<CR>
-nmap <Leader>t :BTags<CR>
-" nmap <Leader>T :Tags<CR>
-" nmap <Leader>m :Methods<CR>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>l :BLines<CR>
-nmap <Leader>L :Lines<CR>
-nmap <Leader>h :History<CR>
-" nmap <Leader>H :GHistory<CR>
-nmap <Leader>: :History:<CR>
-nmap <Leader>M :Maps<CR>
-nmap <Leader>C :Commands<CR>
+" -----------
+nmap <Leader>f :GFiles<CR> " Fzf files tracked by Git
+nmap <Leader>F :Files<CR> " Fzf files in path
+nmap <Leader>b :Buffers<CR> " Fzf buffers
+nmap <Leader>a :ALEToggleBuffer<CR>  " Toggles lint/syntax
+nmap <Leader>c :setlocal list!<CR>:setlocal list?<CR> " Toggle displaying all characters:
+nmap <Leader>s :setlocal invspell<CR> " Toggle spellcheck
+" TODO: Command history can be searched, but they're not executing
+nmap <Leader>: :History:<CR>  " Fzf vim command history
+nmap <Leader>h :History<CR>   " Fzf open file history
+nmap <Leader>M :Maps<CR>      " Fzf browse shortcut mappings
 nmap <Leader>' :Marks<CR>
-nmap <Leader>s :Filetypes<CR>
-nmap <Leader>S :Snippets<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
+" Search all files in path for string
 nmap <Leader>/ :Ag<Space>
+nmap <C-e> :e#<CR>     " Open previous buffer
+nmap <Leader>e :e#<CR>     " Open previous buffer
+nmap <C-n> :bnext<CR>  " Move between open buffers.
+nmap <C-p> :bprev<CR>  " Move between open buffers.
+nmap <Leader>q :q<CR>  " Quit
+nmap <Leader>w :w<CR>  " Write
+nmap <Leader>x :x<CR>  " Write Quit
+" Open bash terminal
+nmap <Leader>t :term bash<CR>
 
-" Quit
-nmap <Leader>q :q<CR>
-
-" Write
-nmap <Leader>w :w<CR>
-
-" Write Quit
-nmap <Leader>x :x<CR>
-
-" Left mouse click enters insert mode instead of visual
-" map <LeftMouse> <LeftMouse>i
-vnoremap . :norm.<CR> " Enable . in visual mode
-nnoremap <Leader>, :nohlsearch<CR> " turn off search highlight
-noremap U <C-R> " Redo with U instead of <C-R>
-" Shift-Tab shift current line left 2 spaces in insert mode
-inoremap <S-Tab> <C-d> 
+nmap <CR> o<Esc>       " Open lines, but stay in normal mode
+nmap <Leader>j :ALENextWrap<CR>
+nmap <Leader>k :ALEPreviousWrap<CR>
 
 " Use different key mappings for easy navigation between splits to save a keystroke. Instead of ctrl-w then j, just ctrl-j "
 nnoremap <C-J> <C-W><C-J>
@@ -199,11 +220,32 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Left mouse click enters insert mode instead of visual
+" map <LeftMouse> <LeftMouse>i
+vnoremap . :norm.<CR> " Enable . in visual mode
+nnoremap <Leader>, :nohlsearch<CR> " turn off search highlight
+noremap U <C-R> " Redo with U instead of <C-R>
+inoremap <S-Tab> <C-d> " Shift-Tab shift current line left 2 spaces in insert mode
+
 """"""""""""""
 " ************
 " END Mappings
 " ************
 """"""""""""""
+
+" -----
+" ALE
+" -----
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+augroup VimDiff
+  autocmd!
+  autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
+augroup END
+
+
 " Automatically load errors into the location list
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -219,6 +261,32 @@ let g:syntastic_ruby_checkers=['mri', 'rubocop']
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 let g:syntastic_python_checkers= ['flake8']
+
+" Lightline
+let g:lightline = {
+\ 'colorscheme': 'PaperColor_light',
+\ 'active': {
+\   'left': [['relativepath', 'modified']],
+\   'right': [['line_total'], ['percent'], ['column'], ['readonly', 'trailling_space', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK',
+\   'trailling_space': 'StatuslineTrailingSpaceWarning',
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'trailling_space': 'warning',
+\   'linter_errors': 'error',
+\ },
+\ 'component': {
+\   'line_total': '%L lines',
+\ },
+\ }
+
+colors PaperColor
 
 "========================================================================================================================"
 " Status Line config
@@ -328,6 +396,13 @@ function! StatuslineTrailingSpaceWarning()
  return b:statusline_trailing_space_warning
 endfunction
 
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -336,6 +411,19 @@ function! StatuslineGit()
   let l:branchname = GitBranch()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
+
+
+" Update the lightline scheme from the colorscheme. Hopefully.
+function! s:UpdateLightlineColorScheme()
+  let g:lightline.colorscheme = g:colors_name
+  call lightline#init()
+endfunction
+
+augroup _lightline
+  autocmd!
+  autocmd User ALELint call s:MaybeUpdateLightline()
+  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+augroup END
 
 "return the syntax highlight group under the cursor ''
 function! StatuslineCurrentHighlight()

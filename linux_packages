@@ -1,7 +1,5 @@
 net-tools
 vim
-kde-full
-latte-dock
 tmux
 git
 tree
@@ -11,8 +9,5 @@ pandoc
 bash
 bash-completion
 curl
-xclip
-exfat-fuse
-exfat-utils
-nordvpn
-keepassxc 
+stress
+yamllint
