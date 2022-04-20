@@ -73,6 +73,7 @@ brew "make"
 brew "minikube"
 # Like Charlesproxy but opensource https://mitmproxy.org
 brew "mitmproxy"
+brew "mplayer"
 brew "newsboat"
 brew "npm"
 # https://github.com/vmware-tanzu/octant
