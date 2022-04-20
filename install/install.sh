@@ -58,8 +58,15 @@ create_symlinks() {
 tmux() {
   logger "Setting up tmux"
   logger "Need to restore iterm2 for osx??"
-  mkdir -p ~/.tmux/plugins
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  if [ ! -d ~/.tmux/plugins ]; then
+    logger "Creating tmux plugins..."
+    mkdir -p ~/.tmux/plugins
+    logger "Cloning tmux tpm plugins..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  else 
+    logger "Updating tmux tpm plugins..."
+    cd ~/.tmux/plugins/tpm && git pull origin
+  fi
   ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 }
 ssh() {
@@ -198,12 +205,16 @@ kubernetes() {
   ../kubernetes/install.sh
 }
 
-git() {
-  logger "Setting up git commitizen"
-  npm install -g git-cz --force
+gitinstall() {
+  if [ ! -d /opt/homebrew/lib/node_modules/git-cz ] ; then
+    logger "Setting up git commitizen..."
+    npm install -g git-cz --force
+  else
+    logger "Git commitizen already installed..."
+  fi
 
   logger "Updating meeting backgrounds submodule..."
-  git submodule update --init --recursive
+  cd ~/dotfiles && git submodule update --init --recursive
 }
 
 set_os_vars
@@ -214,4 +225,4 @@ oh_my_zsh
 ssh
 kubernetes
 tmux
-git
+gitinstall

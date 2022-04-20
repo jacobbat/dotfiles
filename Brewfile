@@ -20,6 +20,8 @@ tap "benwebber/tunnelblickctl"
 brew "ansible"
 brew "ansible-lint"
 brew "asciiquarium"
+# Tool version Manager used for Elixir http://asdf-vm.com/guide/introduction.html#how-it-works
+brew "asdf"
 brew "bash"
 brew "bash-completion@2"
 # Best cat/more/less formatter
@@ -34,6 +36,7 @@ brew "consul"
 brew "consul-template"
 # For things like realpath
 brew "coreutils"
+brew "elixir"
 #brew "dnsmasq", restart_service: true
 # https://github.com/goodwithtech/dockle
 # Contianer Image Linter
