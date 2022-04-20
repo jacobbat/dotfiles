@@ -28,7 +28,8 @@ brew "cmatrix"
 brew "curl"
 # Commitizen tui for conventional commits https://github.com/commitizen/cz-cli
 # Probably prefer npm install -g commitizen because brew is very old 2.x vs 4.x
-brew "commitizen"
+# git cz can be installed via npm install -g git-cz
+#brew "commitizen"
 brew "consul"
 brew "consul-template"
 # For things like realpath
@@ -73,6 +74,7 @@ brew "minikube"
 # Like Charlesproxy but opensource https://mitmproxy.org
 brew "mitmproxy"
 brew "newsboat"
+brew "npm"
 # https://github.com/vmware-tanzu/octant
 # Shows how applications run on k8s
 brew "octant"
