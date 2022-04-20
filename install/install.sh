@@ -107,6 +107,14 @@ oh_my_zsh() {
 }
 
 install_mac_packages() {
+
+  if [ ! -n "$(command -v gcc)" ]  ; then
+    logger "Installing OSX Dev Tools (including git)..."
+    softwareupdate --all --install --force
+  else
+    logger "OSX Dev Tools (including git) already installed..."
+  fi
+
   if [ ! -n "$(command -v fzf)" ]  ; then
     logger "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -190,11 +198,17 @@ kubernetes() {
   ../kubernetes/install.sh
 }
 
+git() {
+  logger "Setting up git commitizen"
+  npm install -g git-cz --force
+}
+
 set_os_vars
-#create_symlinks
-#install_packages
-#add_aliases
-#oh_my_zsh
-#ssh
-#kubernetes
+create_symlinks
+install_packages
+add_aliases
+oh_my_zsh
+ssh
+kubernetes
 tmux
+git
