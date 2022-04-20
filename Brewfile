@@ -15,8 +15,6 @@ tap "benwebber/tunnelblickctl"
 # Binaries
 brew "ansible"
 brew "ansible-lint"
-# Removes everything on uninstall of an app
-brew "apptrap"
 brew "asciiquarium"
 brew "bash"
 brew "bash-completion@2"
@@ -53,6 +51,7 @@ brew "kubespy"
 brew "maven"
 cask "make"
 brew "minikube"
+brew "mplayer"
 brew "newsboat"
 # https://github.com/vmware-tanzu/octant
 # Shows how applications run on k8s
@@ -89,6 +88,8 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 # Apps
+# Removes everything on uninstall of an app
+cask "apptrap"
 # Great USB Imager
 cask "balenaetcher"
 # Don't let the mac fall asleep (clickable)

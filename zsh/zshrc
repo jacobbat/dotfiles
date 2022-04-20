@@ -86,7 +86,7 @@ plugins=(
   iterm2
   jira
   oc 
-  osx 
+  macos 
   pip
   python
   kubectl 
