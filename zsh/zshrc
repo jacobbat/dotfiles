@@ -11,7 +11,17 @@ export ZSH=$HOME/.oh-my-zsh
 export FZF_BASE=/opt/homebrew/opt/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="/usr/local/bin:/opt/local/sbin:$HOME/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:~/src/go/bin:/usr/local/bin:/sw/bin:/opt/puppetlabs/pdk/bin:~/bin:/usr/local/opt/openjdk/jre/bin"
+# Depending on if we're OSX AND if we're ARM or Intel set our path for homebrew
+export PATH="$HOME/bin:"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ "$ARCH" == "i386" ]]; then
+	  export PATH="$PATH:/usr/local/bin"
+  else
+	  export PATH="$PATH:/opt/homebrew/bin"
+  fi
+fi
+export PATH="$PATH:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:~/src/go/bin:/usr/local/bin:/sw/bin:/opt/puppetlabs/pdk/bin:~/bin:/usr/local/opt/openjdk/jre/bin"
+
 
 
 # Update powerlevel10k
@@ -147,7 +157,17 @@ export PATH=~/Downloads/packer:$PATH
 
 # For Go
 export GOPATH="$HOME/src/go/"
-export GOROOT=/usr/local/opt/go/libexec
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ "$ARCH" == "i386" ]]; then
+    GOROOT=/usr/local/opt/go/libexec
+  else
+    GOROOT=/opt/homebrew/opt/go/libexec
+  fi
+else
+  GOROOT=/usr/local/go/libexec
+fi
+
+export GOROOT
 export GOPRIVATE=github.csnzoo.com
 export PATH=$PATH:$GOPATH/bin
 
