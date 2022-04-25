@@ -56,7 +56,6 @@
 [user]
 	name = Chris Hirsch
 	signingkey = 4996D596224B4221
-	email = chris@base2technology.com
 
 [log]
 	# Show branch names with git log
