@@ -213,9 +213,30 @@ gitinstall() {
     logger "Git commitizen already installed..."
   fi
 
+  if [ ! -f ~/.gitconfig.user ] ; then
+    logger "Setting up local git config..."
+    read -p "Please enter your LOCAL (ie business) email address: " email
+    logger "Using $email for ~/.gitconfig.user"
+    echo -e "[user]\n  email = ${email}\n"
+  else
+    logger "Local Git config already installed..."
+  fi
+
+
   logger "Updating meeting backgrounds submodule..."
   cd ~/dotfiles && git submodule update --init --recursive
 }
+
+elixirinstall() {
+  logger "Setting up erlang..."
+  asdf plugin add erlang
+  logger "Setting up elixir..."
+  asdf plugin add elixir
+
+  #asdf install
+  #asdf list
+}
+
 
 set_os_vars
 create_symlinks
@@ -226,3 +247,4 @@ ssh
 kubernetes
 tmux
 gitinstall
+elixirinstall
