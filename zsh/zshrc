@@ -12,7 +12,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Depending on if we're OSX AND if we're ARM or Intel set our path for homebrew
 export PATH="$HOME/bin:"
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ "$ARCH" == "arm" ]]; then
+  if [[ "$CPUTYPE" == "arm64" ]]; then
 	  HOMEBREW_PREFIX=/opt/homebrew
   else
 	  HOMEBREW_PREFIX=/usr/local
