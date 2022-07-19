@@ -1,3 +1,32 @@
+# My dotfiles
+
+## Requirements
+
+* MacOS or Ubuntu
+* Git
+* root access
+
+## Installation
+
+Walk through to install and configure a new MacOS or Linux box
+
+### Install script
+
+```bash
+# Clone this repo into your home directory
+cd ~
+git clone https://github.com/chrishirsch/dotfiles.git
+# Run the install script
+cd dotfiles/install
+./install.sh
+```
+
+### iTerm
+
+**TODO**: Add iTerm steps
+
+
+
 Make SURE that you're running iTerm2 when attempting to configure zsh and p10k otherwise nothing works!
 
 ## Setting up Visual Studio Code
