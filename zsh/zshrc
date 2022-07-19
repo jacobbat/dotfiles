@@ -89,6 +89,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   ansible
+  asdf
   aws 
   common-aliases 
   colorize
@@ -111,6 +112,7 @@ plugins=(
   tmux 
   vagrant
   vscode
+  zsh-completions
 )
 
 
@@ -279,6 +281,14 @@ export GPG_TTY=$(tty)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Bring in tab completion for aws cli via fzf
+# https://medium.com/@herryhan2435/using-aws-cli-with-fzf-on-ohmyzsh-ec995ee3784f
+[[ ! -f ~/.oh-my-zsh/custom/plugins/fzf-tab-completion ]] || source ~/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+# only aws command completion
+#zstyle ':completion:*:*:aws' fzf-search-display true
+# or for everything
+zstyle ':completion:*' fzf-search-display true
 
 
 export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib"
