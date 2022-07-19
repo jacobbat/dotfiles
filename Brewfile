@@ -22,12 +22,17 @@ brew "ansible-lint"
 brew "asciiquarium"
 # Tool version Manager used for Elixir http://asdf-vm.com/guide/introduction.html#how-it-works
 brew "asdf"
+brew "awscli"
+brew "aws-cdk"
 brew "bash"
 brew "bash-completion@2"
 # Best cat/more/less formatter
 brew "bat"
+# Cloud Formation Linter
+brew "cfn-lint"
+# CloudFlare SSL (ie openssl cli replacement)
+brew "cfssl"
 brew "cmatrix"
-brew "curl"
 # Commitizen tui for conventional commits https://github.com/commitizen/cz-cli
 # Probably prefer npm install -g commitizen because brew is very old 2.x vs 4.x
 # git cz can be installed via npm install -g git-cz
@@ -36,7 +41,8 @@ brew "consul"
 brew "consul-template"
 # For things like realpath
 brew "coreutils"
-brew "elixir"
+brew "curl"
+#brew "elixir"
 #brew "dnsmasq", restart_service: true
 # https://github.com/goodwithtech/dockle
 # Contianer Image Linter
@@ -85,6 +91,8 @@ brew "octant"
 brew "pandoc"
 brew "packer"
 brew "pdf2svg"
+# GUI Postgres Client (like dbeaver but lighter)
+brew "postico"
 brew "python"
 brew "pyenv-virtualenv"
 brew "rename"
@@ -139,7 +147,6 @@ cask "firefox"
 cask "flux"
 # Excellent Git GUI
 cask "fork"
-cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-cloud-sdk"
 #cask "imagealpha"
@@ -158,7 +165,7 @@ cask "licecap"
 # Graphical Diff
 cask "meld"
 # Autodesk meshmixer used to separate polygons for multicolor MMU prints
-cask "meshmixer"
+#cask "meshmixer"
 # Rename a list of files quickly
 cask "namechanger"
 # VPN Provider
