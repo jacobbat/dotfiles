@@ -53,6 +53,7 @@ create_symlinks() {
   ln -sf ~/dotfiles/vim/linters/flake8 ~/.config/flake8
   ln -sf ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
   ln -sf ~/dotfiles/zsh/aliases ~/.config/aliases
+  ln -sf ~/dotfiles/golang/golangci.yaml ~/.golangci.yaml
 }
 
 tmux() {
@@ -248,3 +249,4 @@ kubernetes
 tmux
 gitinstall
 elixirinstall
+Need to use https://github.com/deadc0de6/dotdrop
