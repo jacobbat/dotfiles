@@ -26,7 +26,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " GoLang developme
 Plug 'wayfair-incubator/tremor-vim'                           " Tremor
 Plug 'tpope/vim-obsession'                                    " Vim Obsession for tmux/vim persistence
 Plug 'preservim/nerdtree'                                     " Nerdtree visual Filemanager
-
+"Plug 'github/copilot.vim'                                     " Microsoft/OpenAI Copilot
 "
 "Bundle "godlygeek/tabular"
 "" Nerdtree setup
