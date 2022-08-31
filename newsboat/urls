@@ -9,6 +9,7 @@ https://feeds.feedburner.com/HighScalability "~High Scalability" blog
 https://www.infoq.com/rss/rss.action "~Infoq" blog
 https://www.robustperception.io/feed/ "~Robust Perception" blog
 https://krebsonsecurity.com/feed/ "~Krebs on Security" blog
+https://stackoverflow.blog/feed "~Stack Overflow" blog
 
 # Finance
         http://localhost:0002 "~# Finance"
@@ -36,4 +37,3 @@ https://news.ycombinator.com/rss "~Hacker News Combinator" news
 # Backpacking Gear Sale
         http://localhost:0006 "~# Backpacking"
 https://www.hammockforums.net/forum/external.php?type=RSS2&forumids=154 "~Hammockforum Sale" forum
-https://backpackinglight.com/forums/forum/commerce/gear-swap/feed "~Backpackinglight Gear Swap" forum
