@@ -13,14 +13,25 @@ export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+# Python environment
+eval "$(pyenv init --path)"
+
 export GPG_TTY=$(tty)  # Needed for GPG key signing
 # Enable bash completion
 # Bash completion files for each app resides here: /usr/local/etc/bash_completion.d/
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
 # AWS CLI bash completion
 complete -C '/usr/local/bin/aws_completer' aws
 
+# Kubectl autocompletion
+source <(kubectl completion bash)
+
+# Aliases
 alias ll="ls -lah"
+alias vpn-onetouch='~/.script/vpn-onetouch'
+alias vpn='/opt/cisco/anyconnect/bin/vpn'
+
 export CLICOLOR=1
 
 shopt -s cdspell      # autocorrect typos in path names when using `cd`
@@ -122,4 +133,46 @@ function set_bash_prompt {
   PS1+="$COLOR_RESET "
 }
 
+# get clipboard as <class>
+getclip() {
+  local class=$1; shift; : ${class:?}
+  osascript -e "get the clipboard as «class ${class}»"
+}
+
+# get clipboard as <class> (decoding hex string)
+getclipb() {
+  local class=$1; shift; : ${class:?}
+  getclip "$class" | sed "s/«data ${class}//; s/»//" | xxd -r -p
+}
+
+# Paste the screenshot in the clipboard to a file and copy the markdown 
+function pss () {
+    img_folder="${HOME}/Documents/notes/images"
+    filename="Screen_Shot_$(date +%Y-%m-%d\_at\_%H.%M.%S).png"
+    img_format="PNGf"
+    getclipb ${img_format} >${img_folder}/${filename}
+
+    # osascript -e "tell application \"System Events\" to ¬
+    #         write (the clipboard as «class PNGf») to ¬
+    #         (make new file at img_folder \"$img_folder\" ¬
+    #         with properties {name:\"$filename\"})"
+    echo "![${filename}](${img_folder}/${filename})" | pbcopy
+    open ${img_folder}/${filename}
+}
+
+# Make today's note file and add to git, if the file doesn't exist
+function mknte () {
+  note_folder="${HOME}/Documents/notes"
+  NOTE_FILE_NAME_DATE_FORMAT="+%Y-%m-%d"
+  currDate=$(date "${NOTE_FILE_NAME_DATE_FORMAT}")
+  todaysNoteFile="${note_folder}/${currDate}.md"
+  if [ ! -f "${todaysNoteFile}" ]; then
+    touch $todaysNoteFile
+    cd $note_folder
+    git add $todaysNoteFile
+  fi
+  vim $todaysNoteFile
+}
+
 PROMPT_COMMAND="set_bash_prompt; $PROMPT_COMMAND"
+export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"
