@@ -8,9 +8,11 @@ Plug 'flazz/vim-colorschemes'       " Colors
 Plug 'junegunn/fzf.vim'             " Fzf vim wrapper
 Plug 'w0rp/ale'                     " Linting
 Plug 'itchyny/lightline.vim'        " Lightweight status line
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'} " Must have for go development
 Plug 'tpope/vim-commentary'         " Easier way to comment out code
 Plug 'ycm-core/YouCompleteMe'
+Plug 'leafgarland/typescript-vim'   " TypeScript syntax
+Plug 'vim-scripts/indentpython.vim' " Indent python better
 call plug#end() " Initialize plugin system
 
 " If using tmux and iTerm2 on OSX, the following changes the cursor from a block to a cursor
@@ -60,14 +62,14 @@ set vb t_vb=                    " Disable beep on errors
 set showmode                    " show the current mode
 set showmatch                   " automatically show matching brackets
 set wildmenu                    " Display all matching files when we tab complete
-set background=dark             " Use colours that work well on a dark background (Console is usually black)
+set background=dark            " Use colours that work well on a dark background (Console is usually black)
 colors PaperColor
 set t_Co=256                    " tell the term has 256 colors
 set mouse=a                     " Enable mouse usage
 set ttymouse=xterm2             " mouse codes from iTem that Vim will recognize
 set guioptions+=a               " autoselect in gui mode
 set showcmd                     " show command in bottom bar
-set foldmethod=syntax           " set folding based on syntax
+set foldmethod=indent           " set folding based on syntax
 " -------------------
 " Miscellaneous Options
 " -------------------
@@ -83,6 +85,7 @@ set clipboard=unnamed             " Use clipboard register for everything except
 " ----------
 set rtp+=/usr/local/opt/fzf       " Enable fzf
 set rtp+=~/.fzf                   " Enable fzf on Linux
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow " Enable ripgrep
 let g:fzf_layout = { 'down': '30%' }
 
 " Leader is now space, using that for shortcuts
@@ -110,7 +113,7 @@ nmap <Leader>z z= " Show suggestions for mispelled word
 nmap <Leader>' :Marks<CR>
 nmap <Leader><Leader>h :Helptags!<CR>
 " Search all files in path for string
-nmap <Leader>/ :Ag<Space>
+nmap <Leader>/ :Rg<CR>
 nmap <C-e> :e#<CR>     " Open previous buffer
 " Edit document
 nmap <Leader>e :e<Space>
@@ -119,8 +122,11 @@ nmap <C-p> :bprev<CR>  " Move between open buffers.
 nmap <Leader>q :q<CR>  " Quit
 nmap <Leader>w :w<CR>  " Write
 nmap <Leader>x :x<CR>  " Write Quit
-" Open bash terminal
-nmap <Leader>t :term bash<CR>
+" Put current time stamp
+nmap <Leader>t i<C-R>=strftime("%T")<CR><Esc>
+
+" Save screenshot from clipboard to local file & paste markdown link
+nmap <Leader>p :!pss <CR>p
 
 nmap <CR> o<Esc>       " Open lines, but stay in normal mode
 " ALE go to next word wrap
@@ -183,6 +189,21 @@ let g:go_highlight_operators = 1
 let g:go_auto_type_info = 0
 " Autocomplete prompt whenever you press the dot (.), 
 " au filetype go inoremap <buffer> . .<C-x><C-o>
+
+" ---------
+"  Folding
+" ---------
+" nnoremap za zA
+" function! MyFoldText()
+"     let nblines = v:foldend - v:foldstart + 1
+"     let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+"     let line = getline(v:foldstart)
+"     let comment = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
+"     let expansionString = repeat(".", w - strwidth(nblines.comment.'"'))
+"     let txt = '"' . comment . expansionString . nblines
+"     return txt
+" endfunction
+" set foldtext=MyFoldText()
 
 " Lightline
 let g:lightline = {
