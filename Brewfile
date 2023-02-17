@@ -71,6 +71,8 @@ brew "kubectx"
 brew "kubelogin"
 # See K8S resources in realtime 
 brew "kubespy"
+# For heif-convert cli tool
+brew "libheif"
 brew "maven"
 brew "make"
 brew "minikube"
