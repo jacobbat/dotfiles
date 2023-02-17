@@ -55,6 +55,7 @@ brew "exercism"
 brew "findutils"
 brew "flake8"
 brew "fluxctl"
+brew "ffmpeg"
 brew "fzf"
 brew "git"
 brew "git-lfs"
@@ -64,9 +65,12 @@ brew "glances"
 brew "helm"
 brew "helmfile"
 brew "htop"
+# JSON diff
+brew "jd"
 brew "jq"
 # Interactive json cli too https://pauljuliusmartinez.github.io/?ref=console.dev
 brew "jless"
+brew "jsonlint"
 # Artifactory CLI
 brew "jfrog-cli"
 # https://github.com/atombender/ktail

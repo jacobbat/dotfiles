@@ -7,6 +7,7 @@ set_os_vars() {
       Linux*)     machine=Linux
                   alias_file=~/.bashrc
                   bash_profile_file=~/.bashrc
+                  functions_file=~/.functions
                   if [ -n "$(command -v yum)" ]  ; then
                     pkg_mgr=${pkg_mgr:-yum}
                     # Enable epel
@@ -53,7 +54,9 @@ create_symlinks() {
   ln -sf ~/dotfiles/vim/linters/flake8 ~/.config/flake8
   ln -sf ~/dotfiles/vim/linters/yamllint/config ~/.config/yamllint/config
   ln -sf ~/dotfiles/zsh/aliases ~/.config/aliases
+  ln -sf ~/dotfiles/zsh/functions ~/.functions
   ln -sf ~/dotfiles/golang/golangci.yaml ~/.golangci.yaml
+  ln -sf ~/dotfiles/postgresql/psqlrc ~/.psqlrc
 }
 
 tmux() {
