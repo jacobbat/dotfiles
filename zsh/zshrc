@@ -159,7 +159,7 @@ export PATH=~/Downloads/packer:$PATH
 # For Go
 export GOPATH="$HOME/src/go/"
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ "$ARCH" == "i386" ]]; then
+  if [[ "$CPUTYPE" == "x86_64" ]]; then
     GOROOT=/usr/local/opt/go/libexec
   else
     GOROOT=/opt/homebrew/opt/go/libexec
