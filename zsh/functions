@@ -30,3 +30,41 @@ function gc_count_hot() {
 function gc_count_cold() {
   gcloud compute --project wf-gcp-us-lm-prod instances list --filter="name ~ escold.*$1" --sort-by='name' --format="table(name)" --quiet | grep -v NAME | wc -l
 }
+
+# Tail AWS CloudWatch Logs
+function aws_get_log_groups() {
+  aws logs describe-log-groups | jq '.logGroups[].logGroupName'
+}
+
+# Tail AWS CloudWatch Logs
+# Setup in ~/.site
+function aws_tail_log_groups() {
+  # ie /ecs/service-api
+  LOG_GROUP=$AWS_LOG_GROUP
+  SINCE="15m"
+  FILTER_PATTERN=""
+  FILTER=""
+
+  # If no arguments were provided, give an example usage but continue with defaults
+  if [ $# -eq 0 ]; then
+    printf "No arguments supplied...continuing with defaults...\n"
+    printf "Example usage:  aws_tail_log_groups $AWS_LOG_GROUP Invalid 1m\n\n"
+  fi 
+
+  if [ -n "$1" ]; then
+    LOG_GROUP="$1"
+  fi
+  if [ -n "$2" ]; then
+    FILTER_PATTERN="--filter-pattern"
+    FILTER="$2"
+  fi
+  if [ -n "$3" ]; then
+    SINCE="$3"
+  fi
+
+  printf "LOG_GROUP=$LOG_GROUP\n"
+  printf "FILTER_PATTERN=$FILTER_PATTERN\n"
+  printf "FILTER=$FILTER\n"
+  printf "SINCE=$SINCE\n"
+  aws logs tail ${LOG_GROUP} --follow --format short ${FILTER_PATTERN} ${FILTER} --since ${SINCE}
+}

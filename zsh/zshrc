@@ -91,6 +91,7 @@ plugins=(
   ansible
   asdf
   aws 
+  brew
   common-aliases 
   colorize
   docker 
@@ -302,6 +303,15 @@ source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Get Brew setup
 eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+# https://formulae.brew.sh/formula/zsh-completions
+# compaudit | xargs chmod g-w (if getting a perms issue)
+if type brew &>/dev/null; then
+     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+     autoload -Uz compinit
+     compinit
+fi
+
 
 eval "$(pyenv init -)"
 # Need to install https://github.com/commitizen/cz-cli
