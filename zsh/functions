@@ -36,6 +36,30 @@ function aws_get_log_groups() {
   aws logs describe-log-groups | jq '.logGroups[].logGroupName'
 }
 
+# Gets your current sso creds, and exports them to the environment so you don't have to use --profile in each command
+function aws_export_sso_creds() {
+  profile=dev-dev
+  if [ $# -eq 0 ]; then
+    printf "No profile specified, using dev-dev profile...\n"
+    aws sso login --profile $profile
+  else
+    profile=$1
+    printf "Using supplied profile $profile...\n"
+    aws sso login --profile $profile
+  fi
+
+  printf "Getting creds for $profile...\n"
+
+  eval "$(aws configure export-credentials --profile $profile --format env)"
+}
+
+# Unsets the previously exported creds from the environment
+function aws_unexport_sso_creds() {
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SESSION_TOKEN
+}
+
 # Tail AWS CloudWatch Logs
 # Setup in ~/.site
 function aws_tail_log_groups() {
