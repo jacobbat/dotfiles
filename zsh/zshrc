@@ -175,6 +175,11 @@ export GOROOT=/usr/local/go
 #export GOPRIVATE=github.csnzoo.com
 export PATH=$PATH:/usr/local/go/bin
 
+# For NVM NodeJS Version Manager
+export NVM_DIR="$HOME/.nvm"
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 # fshow - git commit browser
 fshow() {
   git log --graph --color=always \

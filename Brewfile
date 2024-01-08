@@ -24,6 +24,8 @@ brew "asciiquarium"
 # No longer supported (ie malware?)
 # brew "asdf"
 brew "awscli"
+brew "aws-sam-cli"
+brew "aws-vault"
 brew "aws-cdk"
 # Amazon AWS Shell
 brew "aws-shell"
@@ -90,16 +92,23 @@ brew "kubespy"
 brew "libheif"
 brew "maven"
 brew "make"
+# An opensource Redis Client GUI
+brew "medis"
 brew "minikube"
 # Like Charlesproxy but opensource https://mitmproxy.org
 brew "mitmproxy"
+# A super power paging program https://www.jedsoft.org/most/
+brew "most"
 brew "mplayer"
 brew "newsboat"
 brew "npm"
 brew "node"
+# NodeJS Version Manager
+brew "nvm"
 # https://github.com/vmware-tanzu/octant
 # Shows how applications run on k8s
 brew "octant"
+brew "owasp-zap"
 brew "pandoc"
 brew "packer"
 brew "pdf2svg"
