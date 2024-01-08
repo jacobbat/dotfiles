@@ -10,7 +10,17 @@
 
 Walk through to install and configure a new MacOS or Linux box
 
+### Install Brew
+
+### Install iTerm
+
+```bash
+brew install iterm2
+```
+
 ### Install script
+
+While running iterm do the install script
 
 ```bash
 # Clone this repo into your home directory

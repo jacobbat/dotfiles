@@ -212,7 +212,8 @@ cask "pulse-sms"
 cask "qpdf"
 # Replaced spectacle
 cask "rectangle"
-cask react-proto
+# Quickly prototype react apps
+cask "react-proto"
 # Secure Chat
 cask "signal"
 cask "spotify"
