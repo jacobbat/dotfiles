@@ -12,6 +12,16 @@ Host *
     AddressFamily inet
     Tunnel yes
 
+Host localhost
+  PubkeyAcceptedAlgorithms +ssh-rsa
+  HostkeyAlgorithms +ssh-rsa
+
+# Disable strict key checking for the FRC RoboRio
+Host 10.32.0.2 
+    StrictHostKeyChecking no
+    User lvuser
+    # User admin for root
+
 Host *.amazonaws.com
   # https://developer.rackspace.com/blog/speeding-up-ssh-session-creation/
   ControlPath ~/.ssh/sockets/%h
@@ -27,4 +37,3 @@ Host *
   ControlPath ~/.ssh/sockets/%C
   ControlMaster auto
   ControlPersist 600
-

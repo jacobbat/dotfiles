@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Set OS specific variables
 set_os_vars() {
   unameOut="$(uname -s)"
@@ -114,7 +116,14 @@ oh_my_zsh() {
   fi
   logger "Don't need to explicitly download fonts..just make sure to be using iterm2"
   logger "Run p10k configure to re-configure powerlevel"
+
   set +e
+  logger "Ensuring permissions are correct"
+  compaudit | xargs chmod g-w
+
+  # Need to explicitly git clone the zsh-completions (plugins no longer work)
+  # https://github.com/zsh-users/zsh-completions/issues/603
+  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 }
 
 install_mac_packages() {
@@ -252,4 +261,4 @@ kubernetes
 tmux
 gitinstall
 elixirinstall
-Need to use https://github.com/deadc0de6/dotdrop
+#Need to use https://github.com/deadc0de6/dotdrop

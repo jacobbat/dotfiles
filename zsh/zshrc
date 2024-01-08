@@ -13,7 +13,8 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH="$HOME/bin:"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   if [[ "$CPUTYPE" == "arm64" ]]; then
-	  HOMEBREW_PREFIX=/opt/homebrew
+	  #HOMEBREW_PREFIX=/opt/homebrew
+	  HOMEBREW_PREFIX=/usr/local
   else
 	  HOMEBREW_PREFIX=/usr/local
   fi
@@ -159,19 +160,20 @@ export PATH=~/Downloads/packer:$PATH
 
 # For Go
 export GOPATH="$HOME/src/go/"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ "$CPUTYPE" == "x86_64" ]]; then
-    GOROOT=/usr/local/opt/go/libexec
-  else
-    GOROOT=/opt/homebrew/opt/go/libexec
-  fi
-else
-  GOROOT=/usr/local/go/libexec
-fi
+#if [[ "$OSTYPE" == "darwin"* ]]; then
+#  if [[ "$CPUTYPE" == "x86_64" ]]; then
+#    GOROOT=/usr/local/opt/go/libexec
+#  else
+#    GOROOT=/opt/homebrew/opt/go/libexec
+#  fi
+#else
+#  GOROOT=/usr/local/go/libexec
+#fi
 
-export GOROOT
-export GOPRIVATE=github.csnzoo.com
-export PATH=$PATH:$GOPATH/bin
+# As of CY2023, for any modern Go installation, do not set/export GOROOT.
+export GOROOT=/usr/local/go
+#export GOPRIVATE=github.csnzoo.com
+export PATH=$PATH:/usr/local/go/bin
 
 # fshow - git commit browser
 fshow() {

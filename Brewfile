@@ -1,6 +1,6 @@
 # Taps
 tap "atombender/ktail"
-tap "chef/chef"
+#tap "chef/chef"
 tap "derailed/k9s"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -21,9 +21,12 @@ brew "ansible"
 brew "ansible-lint"
 brew "asciiquarium"
 # Tool version Manager used for Elixir http://asdf-vm.com/guide/introduction.html#how-it-works
-brew "asdf"
+# No longer supported (ie malware?)
+# brew "asdf"
 brew "awscli"
 brew "aws-cdk"
+# Amazon AWS Shell
+brew "aws-shell"
 brew "bash"
 brew "bash-completion@2"
 # Best cat/more/less formatter
@@ -62,6 +65,8 @@ brew "git-lfs"
 brew "gnu-getopt"
 # Similar to htop but more details
 brew "glances"
+# Graphical Ping
+brew "gping"
 brew "helm"
 brew "helmfile"
 brew "htop"
@@ -91,15 +96,14 @@ brew "mitmproxy"
 brew "mplayer"
 brew "newsboat"
 brew "npm"
+brew "node"
 # https://github.com/vmware-tanzu/octant
 # Shows how applications run on k8s
 brew "octant"
 brew "pandoc"
 brew "packer"
 brew "pdf2svg"
-# GUI Postgres Client (like dbeaver but lighter)
-brew "postico"
-brew "python"
+brew "python@3.11"
 brew "pyenv-virtualenv"
 brew "rename"
 brew "rust"
@@ -190,11 +194,16 @@ cask "plexamp"
 cask "pocket-casts"
 # Graphical REST Tool
 cask "postman"
+# GUI Postgres Client (like dbeaver but lighter)
+cask "postico"
 cask "powershell"
 # SMS across devices
 cask "pulse-sms"
+# Remove PDF Passowrd
+cask "qpdf"
 # Replaced spectacle
 cask "rectangle"
+cask react-proto
 # Secure Chat
 cask "signal"
 cask "spotify"
